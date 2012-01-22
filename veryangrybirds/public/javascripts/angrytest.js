@@ -22,7 +22,7 @@ function init() {
  
  var fixDef = new b2FixtureDef;
  fixDef.density = 1.0;
- fixDef.friction = 0.5;
+ fixDef.friction = 1.0;
  fixDef.restitution = 0.2;
  
  var bodyDef = new b2BodyDef;
@@ -30,9 +30,11 @@ function init() {
  //create ground
  bodyDef.type = b2Body.b2_staticBody;
  fixDef.shape = new b2PolygonShape;
- fixDef.shape.SetAsBox(10, 2);
- bodyDef.position.Set(10, 400 / 30 + 1.8);
+ fixDef.shape.SetAsBox(40, 1);
+//  bodyDef.position.Set(10, 400 / 30 + 1.8);
+ bodyDef.position.Set(20,13.5);
  world.CreateBody(bodyDef).CreateFixture(fixDef);
+ /*
  bodyDef.position.Set(10, -1.8);
  world.CreateBody(bodyDef).CreateFixture(fixDef);
  fixDef.shape.SetAsBox(2, 14);
@@ -40,10 +42,16 @@ function init() {
  world.CreateBody(bodyDef).CreateFixture(fixDef);
  bodyDef.position.Set(21.8, 13);
  world.CreateBody(bodyDef).CreateFixture(fixDef);
- 
+ */
  
  //create some objects
  bodyDef.type = b2Body.b2_dynamicBody;
+ fixDef.shape = new b2PolygonShape;
+ fixDef.shape.SetAsBox( 1, 0.75 );
+ bodyDef.position.x = 10;
+ bodyDef.position.y = 5;
+ world.CreateBody(bodyDef).CreateFixture(fixDef);
+ /*
  for(var i = 0; i < 10; ++i) {
     if(Math.random() > 0.5) {
        fixDef.shape = new b2PolygonShape;
@@ -59,7 +67,7 @@ function init() {
     bodyDef.position.x = Math.random() * 10;
     bodyDef.position.y = Math.random() * 10;
     world.CreateBody(bodyDef).CreateFixture(fixDef);
- }
+ } */
  
  //setup debug draw
  var debugDraw = new b2DebugDraw();
