@@ -1,0 +1,13 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+public/assets
+public/system
+.rvmrc
+.idea/
+*.swp
+*/*.swp
+.idea/
+*.DS_STORE
+
