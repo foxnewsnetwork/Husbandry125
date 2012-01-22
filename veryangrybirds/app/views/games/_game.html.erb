@@ -1,0 +1,13 @@
+<!-- General page to load the game -->
+<!-- The engine -->
+<%= javascript_include_tag "Box2dWeb-2.1.a.3", "Box2dWeb-2.1.a.3.min" %>
+<!-- The game -->
+<%= javascript_include_tag "angrytest" %>
+<canvas id="canvas" width="600" height="400" style="background-color:#555555;" >
+	<script type="text/javascript">
+		$(document).ready( function() { 
+			init();
+		} );
+	</script>
+</canvas>
+
