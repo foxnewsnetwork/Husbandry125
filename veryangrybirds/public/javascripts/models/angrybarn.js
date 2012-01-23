@@ -1,6 +1,19 @@
 // Class BarnDef
 var BarnDef = function( ){
-
+	// physics
+	this.bodyDef = new b2BodyDef;
+	this.fixDef = new b2FixtureDef;
+	this.fixDef.density = 4.0;
+	this.fixDef.friction = 1.0;
+	this.fixDef.restitution = 0.2;
+	this.bodeDef = b2Body.b2_dynamicBody;
+	this.fixDef.shape = new b2PolygonShape;
+	this.fixDef.shape.SetAsBox( 1, 0.75 );
+	
+	// game
+	this.maxspeed = 0.25;
+	this.maxhp = 100;
+	this.cannonDef;
 }
 
 // Class AngryBarn
@@ -14,7 +27,7 @@ var AngryBarn = function(world, player, barnDef) {
 	this.currenthp = barnDef.maxhp;
 	this.image = barnDef.image;
 	this.player = player;
-	this.cannon = AngryCannon( world, player, barnDef.cannonDef );
+	//this.cannon = AngryCannon( world, player, barnDef.cannonDef );
 	this.maxspeed = barnDef.maxspeed;
 	
 	// Game world connection functions
@@ -37,4 +50,4 @@ var AngryBarn = function(world, player, barnDef) {
 	}
 };
 
-function BarnFactory( 
+

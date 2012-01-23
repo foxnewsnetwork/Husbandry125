@@ -21,3 +21,25 @@ var AngryPlayer = function( playerDef ) {
 		// TODO: save player to db
 	}
 };
+
+var PlayerDef = function(username, email, payment_method, payment_info, password) {
+	this.username = username;
+	this.email = email;
+	this.payment_method = payment_method;
+	this.payment_info = payment_info;
+	this.password = password;
+};
+
+function PlayerFactory( order ){
+	if(order == "default"){
+		return new AngryPlayer( 
+			new PlayerDef( 
+				"",
+				"",
+				"",
+				"",
+				""
+			)
+		 );
+	}
+}

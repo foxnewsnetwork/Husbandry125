@@ -1,5 +1,5 @@
 // Class AngryWorld
-var AngryWorld = function( worldDef ){ 
+var AngryWorld = function( ){ 
 	this.world = new Box2D.Dynamics.b2World( 
 		Box2D.Common.Math.b2Vec2(0,10), // gravity vector
 		true // objects fall asleep
@@ -23,4 +23,5 @@ var AngryWorld = function( worldDef ){
 		this.ground.CreateFixture(fixDef);
 	 }
 };
+
 

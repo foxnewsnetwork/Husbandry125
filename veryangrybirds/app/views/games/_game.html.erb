@@ -1,13 +1,14 @@
 <!-- General page to load the game -->
 <!-- The engine -->
 <%= javascript_include_tag "box2d/Box2dWeb-2.1.a.3", "box2d/Box2dWeb-2.1.a.3.min" %>
-<!-- The game -->
+<%= javascript_include_tag "akihabara/gbox", "akihabara/iphopad", "akihabara/trigo", "akihabara/toys", "akihabara/help", "akihabara/tool", "akihabara/gamecycle" %> 
+<!-- Game Models-->
+
+<!-- Game views -->
+
+<!-- Game controller s -->
+<%= javascript_include_tag "controllers/players_controller" %>
+<%= javascript_include_tag "controllers/games_controller" %>
+<!-- Debegging and Testing -->
 <%= javascript_include_tag "experiments/angrytest" %>
-<canvas id="canvas" width="600" height="400" style="background-color:#555555;" >
-	<script type="text/javascript">
-		$(document).ready( function() { 
-			init();
-		} );
-	</script>
-</canvas>
 
