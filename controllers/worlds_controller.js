@@ -19,8 +19,11 @@ theSprLand.position(0, 550, 2);
 
 // Day 05: Creating the animals
 // I don't even know what's suppose to go here
-var theSprBarn = new Game.spr('views/pig.png', 30, 23, 3, 0);
-theSprBarn.position(20, 525, 3).speed(7);
+var theSprBarn = new Game.spr('views/pigbig.png', 80, 60, 3, 0);
+theSprBarn.position(200, 500, 3).speed(5);
+
+var theSprCannon = new Game.spr('views/cannon.png', 60, 45, 0, 0);
+theSprCannon.position(215, 460, 3);
 /*
 // Day 06: Creating the people
 var thePhysicalPlayer = new AngryPlayer(
