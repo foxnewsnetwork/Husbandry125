@@ -1,3 +1,6 @@
+== Some notes
+We no longer use rails server... for now
+
 ==HTML5 Canvas-based flash games!
 Here we make a multiplayer online clone of angry birds.
 The idea is to use the magic of nowjs, box2d, and akihabara
