@@ -14,11 +14,14 @@ var background = new Game.bg( 'views/bg.png', 4, "S", {x:0,y:0} );
 
 // Day 04: Creating the land
 var thePhysicalLand = AngryWorld.ground;
-var theSprLand = new Game.spr('views/land.png', 200, 200, 7, 0);
-/*
+var theSprLand = new Game.spr('views/land.png', 600, 200, 0, 0);
+theSprLand.position(0, 550, 2);
+
 // Day 05: Creating the animals
 // I don't even know what's suppose to go here
-
+var theSprBarn = new Game.spr('views/pig.png', 30, 23, 3, 0);
+theSprBarn.position(20, 525, 3).speed(7);
+/*
 // Day 06: Creating the people
 var thePhysicalPlayer = new AngryPlayer(
 	new PlayerDef(
