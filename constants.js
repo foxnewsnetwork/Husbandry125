@@ -1,0 +1,20 @@
+// Game Constants
+
+var IMAGE_DIR = 'views/',
+    GAME_WIDTH = 600,
+    GAME_HEIGHT = 600,
+    Z_BACKGROUND = 1,
+    PLAYER_STEP_PIXEL = 2,
+    Z_SHADOWS = 10,
+    SCROLL_SPEED_PIXEL = 3,
+    PIXEL_PER_METER = 30;
+    Z_CHARACTERS = 20,
+    Z_GUI=99999,
+    MODE = 0,
+	MODE_GAME = 0,
+	MODE_SHOP = 1,
+	MODE_SIGNIN = 2,
+	GRAVITY = 10,
+	BARN_WIDTH = 80,
+	BARN_HEIGHT = 60
+	;
