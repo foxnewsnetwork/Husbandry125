@@ -1,3 +1,30 @@
+// Keyboard
+var catchKeyDown = function(e) {
+	switch (e.keyCode) {
+		case 80:
+			//Pause();
+			break;
+		case 37:
+			player.sides = -1;
+			break;
+		case 39:
+			player.sides = 1;
+			break;
+	}
+	e.stopPropagation();
+}
+var catchKeyUp = function(e) {
+	switch (e.keyCode) {
+		case 37:
+			if (player.sides===-1) player.sides = 0;
+			break;
+		case 39:
+			if (player.sides===1) player.sides = 0;
+			break;
+	}
+	//e.stopPropagation();
+}
+
 //mouse
 
 var isLeftDown, isRightDown;
