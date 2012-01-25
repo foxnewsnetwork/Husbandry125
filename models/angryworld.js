@@ -1,27 +1,23 @@
 // Class AngryWorld
+// TODO: replace the magical numbers with meaningful constant names
 var AngryWorld = function( ){ 
-	this.world = new Box2D.Dynamics.b2World( 
-		Box2D.Common.Math.b2Vec2(0,10), // gravity vector
+	this.world = new b2World( 
+		new b2Vec2(0,GRAVITY), // gravity vector
 		true // objects fall asleep
 	 );
+	 this.bodyDef = new b2BodyDef;
+	 this.bodyDef.type = b2Body.b2_staticBody;
+	 this.bodyDef.position.Set(30, 13.5);
 	 
-	 this.ground;
-	// Call this function first to initialize the world 
-	 this.initialize = function( ) {
-	 	var fixDef = new b2FixtureDef;
-	 	var bodyDef = new b2BodyDef;
-	 	// Create the ground
-	 	bodyDef.type = b2Body.b2_staticBody; // ground does not move
-	 	fixDef.density = 1.0; 
-	 	fixDef.friction = 0.5;
-	 	fixDef.restitution = 0.2;
-	 	
-	 	fixDef.shape = new b2PolygonShape;
-		fixDef.shape.SetAsBox(40, 1);
-		bodyDef.position.Set(20, 13.5);
-		this.ground = this.world.CreateBody(bodyDef);
-		this.ground.CreateFixture(fixDef);
-	 }
+	 this.fixDef = new b2FixtureDef;
+	 this.fixDef.density = 1.0;
+	 this.fixDef.friction = 0.75;
+	 this.fixDef.restitution = 0.2;
+	 this.fixDef.shape = new b2PolygonShape;
+	 this.fixDef.shape.SetAsBox(40,1);
+	 
+	 this.ground = this.world.CreateBody(this.bodyDef);
+	 this.ground.CreateFixture(this.fixDef);
 };
 
 
