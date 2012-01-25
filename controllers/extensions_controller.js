@@ -5,3 +5,4 @@ function mibbuSetSpritePosition( sprite, x, y, z ){
 	sprite.z = z;
 	sprite.position(x,y,z);
 }
+
