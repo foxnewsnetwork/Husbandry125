@@ -11,7 +11,7 @@ var AngryWorld = function( ){
 	 	var fixDef = new b2FixtureDef;
 	 	var bodyDef = new b2BodyDef;
 	 	// Create the ground
-	 	bodyDef = b2Body.b2_staticBody; // ground does not move
+	 	bodyDef.type = b2Body.b2_staticBody; // ground does not move
 	 	fixDef.density = 1.0; 
 	 	fixDef.friction = 0.5;
 	 	fixDef.restitution = 0.2;

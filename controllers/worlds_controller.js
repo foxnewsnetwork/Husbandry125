@@ -17,7 +17,7 @@ var theSprOcean = new Game.bg( 'views/bg.png', 4, "S", {x:0,y:0} );
 mibbuSetSpritePosition( theSprOcean, 0, 0, Z_BACKGROUND );
 
 // Day 04: Creating the land
-var thePhysicalLand = AngryWorld.ground;
+var thePhysicalLand = thePhysicalWorld.ground;
 var theSprLand = new Game.spr('views/land.png', LAND_WIDTH, LAND_HEIGHT, 0, 0);
 mibbuSetSpritePosition( theSprLand, 0, 550, Z_BACKGROUND);
 /*
@@ -38,11 +38,7 @@ var thePhysicalPlayer = new AngryPlayer( new PlayerDef() );
 // Day 08: Creating barns
 
 var thePhysicalBarn = new AngryBarn( thePhysicalWorld, thePhysicalPlayer, new BarnDef( ) );
-
-var theSprBarn = new Game.spr('views/pigbig.png', BARN_WIDTH, BARN_HEIGHT, 3, 0);
-var theSprCannon = new Game.spr('views/cannon.png', CANNON_WIDTH, CANNON_HEIGHT, 0, 0);
-mibbuSetSpritePosition( theSprBarn, 30, 510, Z_CHARACTERS);
-mibbuSetSpritePosition( theSprCannon, 40, 480, Z_CHARACTERS);
+var thePhysicalCannon = new AngryCannon( thePhysicalWorld, thePhysicalPlayer, new CannonDef( ) );
 
 var theSprBarn = new Game.spr('views/pigbig.png', BARN_WIDTH, BARN_HEIGHT, 3, 0);
 var theSprCannon = new Game.spr('views/cannon.png', CANNON_WIDTH, CANNON_HEIGHT, 0, 0);

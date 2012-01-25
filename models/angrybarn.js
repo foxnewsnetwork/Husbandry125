@@ -6,7 +6,7 @@ var BarnDef = function( ){
 	this.fixDef.density = 4.0;
 	this.fixDef.friction = 1.0;
 	this.fixDef.restitution = 0.2;
-	this.bodeDef = b2Body.b2_dynamicBody;
+	this.bodyDef.type = b2Body.b2_dynamicBody;
 	this.fixDef.shape = new b2PolygonShape;
 	this.fixDef.shape.SetAsBox( BARN_WIDTH * METER_PER_PIXEL, BARN_HEIGHT*METER_PER_PIXEL );
 	
@@ -14,7 +14,7 @@ var BarnDef = function( ){
 	this.maxspeed = 0.25;
 	this.maxhp = 100;
 	this.cannonDef;
-}
+};
 
 // Class AngryBarn
 var AngryBarn = function(world, player, barnDef) {
@@ -25,7 +25,7 @@ var AngryBarn = function(world, player, barnDef) {
 	// Initializing game properties
 	this.maxhp = barnDef.maxhp;
 	this.currenthp = barnDef.maxhp;
-	this.image = barnDef.image;
+//	this.image = barnDef.image;
 	this.player = player;
 	//this.cannon = AngryCannon( world, player, barnDef.cannonDef );
 	this.maxspeed = barnDef.maxspeed;

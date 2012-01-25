@@ -20,5 +20,5 @@ function gameLoop(){
 } 
 
 Game.on();
-Game.hook(gameLoop).hitsOn();
+//Game.hook(gameLoop);
 
