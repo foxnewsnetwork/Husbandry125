@@ -12,15 +12,14 @@ var completeBeing;
 var thePhysicalWorld = new AngryWorld();
 
 // Day 03: Creating the oceans
-var background = new Game.bg( 'views/bg.png', 4, "S", {x:0,y:0} );
-background.position(0,0,Z_BACKGROUND);
+var theSprOcean = new Game.bg( 'views/bg.png', 4, "S", {x:0,y:0} );
+//background.position(0,0,Z_BACKGROUND);
+mibbuSetSpritePosition( theSprOcean, 0, 0, Z_BACKGROUND );
 
 // Day 04: Creating the land
 var thePhysicalLand = AngryWorld.ground;
 var theSprLand = new Game.spr('views/land.png', LAND_WIDTH, LAND_HEIGHT, 0, 0);
-theSprLand.position(0, 550, Z_BACKGROUND);
-theSprLand.x = 0;
-theSprLand.y = 550;
+mibbuSetSpritePosition( theSprLand, 0, 550, Z_BACKGROUND);
 /*
 completeBeing = new CompleteBeing;
 completeBeing.physical = thePhysicalLand;
@@ -42,8 +41,13 @@ var thePhysicalBarn = new AngryBarn( thePhysicalWorld, thePhysicalPlayer, new Ba
 
 var theSprBarn = new Game.spr('views/pigbig.png', BARN_WIDTH, BARN_HEIGHT, 3, 0);
 var theSprCannon = new Game.spr('views/cannon.png', CANNON_WIDTH, CANNON_HEIGHT, 0, 0);
-theSprBarn.position(30, 510, Z_CHARACTERS);
-theSprCannon.position(40, 480, Z_CHARACTERS);
+mibbuSetSpritePosition( theSprBarn, 30, 510, Z_CHARACTERS);
+mibbuSetSpritePosition( theSprCannon, 40, 480, Z_CHARACTERS);
+
+var theSprBarn = new Game.spr('views/pigbig.png', BARN_WIDTH, BARN_HEIGHT, 3, 0);
+var theSprCannon = new Game.spr('views/cannon.png', CANNON_WIDTH, CANNON_HEIGHT, 0, 0);
+mibbuSetSpritePosition( theSprBarn, 300, 510, Z_CHARACTERS);
+mibbuSetSpritePosition( theSprCannon, 310, 480, Z_CHARACTERS);
 /*
 completeBeing = new CompletelyBeing;
 completeBeing.physical = thePhysicalBarn;
