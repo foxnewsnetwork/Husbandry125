@@ -5,12 +5,8 @@
 var tempBeing;
 function gameLoop(){		
 	// Step 1: Mass confluence
-	/*
-	for( soul in theUniverse ){
-		tempBeing = theUniverse[soul];
-		tempBeing.confluence();
-	}
-	*/
+	mibbuSetSpritePosition(theUniverse[0].sprite, 0, 125, Z_BACKGROUND);
+	
 	// Step 2: Handle input
 	
 	// Step 3: Step... into the future
@@ -20,5 +16,5 @@ function gameLoop(){
 } 
 
 Game.on();
-//Game.hook(gameLoop);
+Game.hook(gameLoop);
 

@@ -6,20 +6,20 @@
 
 // Day 01: Letting there be light
 var theUniverse = [];
-var completeBeing;
 
-// Day 02: Creating the world
+// Day 02: Creating the earth
 var thePhysicalWorld = new AngryWorld();
 
-// Day 03: Creating the oceans
-var theSprOcean = new Game.bg( 'views/bg.png', 4, "S", {x:0,y:0} );
+// Day 03: Creating the heavens
+var theSprWorld = new Game.bg( 'views/bg.png', 4, "S", {x:0,y:0} );
 //background.position(0,0,Z_BACKGROUND);
-mibbuSetSpritePosition( theSprOcean, 0, 0, Z_BACKGROUND );
+mibbuSetSpritePosition( theSprWorld, 0, 0, Z_BACKGROUND );
 
 // Day 04: Creating the land
 var thePhysicalLand = thePhysicalWorld.ground;
 var theSprLand = new Game.spr('views/land.png', LAND_WIDTH, LAND_HEIGHT, 0, 0);
 mibbuSetSpritePosition( theSprLand, 0, 550, Z_BACKGROUND);
+theUniverse.push( new CompleteBeing(thePhysicalLand, theSprLand) );
 /*
 completeBeing = new CompleteBeing;
 completeBeing.physical = thePhysicalLand;

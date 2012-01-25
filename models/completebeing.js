@@ -2,17 +2,17 @@
 // Calling confluence merges the spirit into the physical body
 // Calling conflux merges the physical body into the spirit
 // Class: CompleteBeing
-var CompleteBeing = function() { 
-	this.physical;
-	this.sprite;
-	this.vector;
+var CompleteBeing = function(physical, sprite) { 
+	this.physical = physical;
+	this.sprite = sprite;
 	
 	this.confluence = function(){ 
-		this.vector = this.physical.body.GetPosition();
-		this.sprite.x = this.vector.x;
-		this.sprite.y = this.vector.y;
+		this.sprite.x = this.physical.body.position.x * PIXEL_PER_METER;
+		this.sprite.y = this.physical.body.position.y * PIXEL_PER_METER;
+		this.sprite.position(x,y,this.sprite.z);
 	}
 	this.conflux = function(){ 
-		this.physical.body.SetPosition( new b2Vec2(this.sprite.x, this.sprite.y ) ); 
+		this.physical.body.position.x = this.sprite.x * METER_PER_PIXEL;
+		this.physical.body.position.y = this.sprite.y * METER_PER_PIXEL; 
 	}
 }
