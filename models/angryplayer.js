@@ -8,38 +8,26 @@ var AngryPlayer = function( playerDef ) {
 	this.password = playerDef.password;
 
 	// Game related parameters
+/*
 	this.active_barn = BarnFactory( "default" );
 	this.barns = [this.active_barn];
 	this.cannons = [CannonFactory('default')];
-	
+	*/
 	
 	// setup functions
-	this.load( playerDef ){
+	this.load = function( playerDef ){
 		// TODO: load player from database
 	}
-	this.serialize( ){
+	this.serialize = function( ){
 		// TODO: save player to db
 	}
 };
 
-var PlayerDef = function(username, email, payment_method, payment_info, password) {
-	this.username = username;
-	this.email = email;
-	this.payment_method = payment_method;
-	this.payment_info = payment_info;
-	this.password = password;
+var PlayerDef = function( ) {
+	this.username = "username";
+	this.email = "email@email.email";
+	this.payment_method = "visa";
+	this.payment_info = "1234 5648 9713 1258 258 31687 4";
+	this.password = "nigger";
 };
 
-function PlayerFactory( order ){
-	if(order == "default"){
-		return new AngryPlayer( 
-			new PlayerDef( 
-				"",
-				"",
-				"",
-				"",
-				""
-			)
-		 );
-	}
-}

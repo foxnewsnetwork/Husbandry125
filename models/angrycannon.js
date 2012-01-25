@@ -8,12 +8,11 @@ var CannonDef = function( ){
 	this.bodeDef = b2Body.b2_dynamicBody;
 	this.fixDef.shape = new b2PolygonShape;
 	this.fixDef.shape.SetAsBox( CANNON_WIDTH * METER_PER_PIXEL, CANNON_HEIGHT*METER_PER_PIXEL );
-
+	
 	// Game
 	this.maxspeed = 0.25;
 	this.maxhp = 100;
 	this.ammoDef;
-
 }
 
 var AngryCannon = function( world, player, cannonDef ) {
@@ -22,7 +21,7 @@ var AngryCannon = function( world, player, cannonDef ) {
 	this.body.CreateFixture( cannonDef.fixDef );
 	
 	// Game stats
-	this.image = cannonDef.image;
+//	this.image = cannonDef.image;
 //	this.ammo = AngryAmmo( world, player, cannonDef );
 	this.player = player;
 	

@@ -9,11 +9,8 @@ Game.init();
 // Remember, there is a 1:30 ratio between the physical model and the spiritual one
 
 function Confluence( physical, sprite ){ 
-	sprite.position( 
-		PIXEL_PER_METER*(physical.body.position.x),
-		PIXEL_PER_METER*(physical.body.position.y),
-		3
-	);
+	sprite.position.x = PIXEL_PER_METER*(physical.body.position.x);
+	sprite.position.y =PIXEL_PER_METER*(physical.body.position.y);
 }
 
 // Same as the above, but this time, the spiritual one takes dominance
