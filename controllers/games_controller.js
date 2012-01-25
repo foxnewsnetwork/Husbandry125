@@ -1,5 +1,5 @@
 // The game object
-var Game = new mibbu(600, 600);
+var Game = new mibbu(GAME_WIDTH, GAME_HEIGHT);
 Game.fps();
 Game.canvasOff();
 Game.init();
@@ -10,15 +10,15 @@ Game.init();
 
 function Confluence( physical, sprite ){ 
 	sprite.position( 
-		30*(physical.body.position.x),
-		30*(physical.body.position.y),
-		1
+		PIXEL_PER_METER*(physical.body.position.x),
+		PIXEL_PER_METER*(physical.body.position.y),
+		3
 	);
 }
 
 // Same as the above, but this time, the spiritual one takes dominance
 function Conflux( physical, sprite ){ 
-	physical.body.position.x = (sprite.position()['x'])/30.0;
-	physical.body.position.y = (sprite.position()['y'])/30.0;
+	physical.body.position.x = (sprite.position()['x']) * METER_PER_PIXEL;
+	physical.body.position.y = (sprite.position()['y']) * METER_PER_PIXEL;
 }
 

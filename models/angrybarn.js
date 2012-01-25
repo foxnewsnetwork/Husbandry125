@@ -8,7 +8,7 @@ var BarnDef = function( ){
 	this.fixDef.restitution = 0.2;
 	this.bodeDef = b2Body.b2_dynamicBody;
 	this.fixDef.shape = new b2PolygonShape;
-	this.fixDef.shape.SetAsBox( 1, 0.75 );
+	this.fixDef.shape.SetAsBox( BARN_WIDTH * METER_PER_PIXEL, BARN_HEIGHT*METER_PER_PIXEL );
 	
 	// game
 	this.maxspeed = 0.25;
@@ -19,7 +19,7 @@ var BarnDef = function( ){
 // Class AngryBarn
 var AngryBarn = function(world, player, barnDef) {
 	// Initializing physics
-	this.body = world.CreateBody( barnDef.bodyDef );
+	this.body = world.world.CreateBody( barnDef.bodyDef );
 	this.body.CreateFixture( barnDef.fixDef );
 	
 	// Initializing game properties

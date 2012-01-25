@@ -1,11 +1,29 @@
+var CannonDef = function( ){
+	// Physics
+	this.bodyDef = new b2BodyDef;
+	this.fixDef = new b2FixtureDef;
+	this.fixDef.density = 4.0;
+	this.fixDef.friction = 1.0;
+	this.fixDef.restitution = 0.2;
+	this.bodeDef = b2Body.b2_dynamicBody;
+	this.fixDef.shape = new b2PolygonShape;
+	this.fixDef.shape.SetAsBox( CANNON_WIDTH * METER_PER_PIXEL, CANNON_HEIGHT*METER_PER_PIXEL );
+
+	// Game
+	this.maxspeed = 0.25;
+	this.maxhp = 100;
+	this.ammoDef;
+
+}
+
 var AngryCannon = function( world, player, cannonDef ) {
 	// Creating physics components
-	this.body = world.CreateBody( cannonDef.bodyDef );
+	this.body = world.world.CreateBody( cannonDef.bodyDef );
 	this.body.CreateFixture( cannonDef.fixDef );
 	
 	// Game stats
 	this.image = cannonDef.image;
-	this.ammo = AngryAmmo( world, player, cannonDef );
+//	this.ammo = AngryAmmo( world, player, cannonDef );
 	this.player = player;
 	
 	// Game world connection functions

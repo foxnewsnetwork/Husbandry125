@@ -5,6 +5,7 @@
 ******************************/
 
 // Day 01: Letting there be light
+var theUniverse = [];
 
 // Day 02: Creating the world
 var thePhysicalWorld = new AngryWorld;
@@ -14,17 +15,13 @@ var background = new Game.bg( 'views/bg.png', 4, "S", {x:0,y:0} );
 
 // Day 04: Creating the land
 var thePhysicalLand = AngryWorld.ground;
-var theSprLand = new Game.spr('views/land.png', 600, 200, 0, 0);
+var theSprLand = new Game.spr('views/land.png', LAND_WIDTH, LAND_HEIGHT, 0, 0);
 theSprLand.position(0, 550, 2);
+theUniverse.push( { physical: thePhysicalLand, sprite:theSprLand } );
 
 // Day 05: Creating the animals
 // I don't even know what's suppose to go here
-var theSprBarn = new Game.spr('views/pigbig.png', 80, 60, 3, 0);
-theSprBarn.position(200, 500, 3).speed(5);
 
-var theSprCannon = new Game.spr('views/cannon.png', 60, 45, 0, 0);
-theSprCannon.position(215, 460, 3);
-/*
 // Day 06: Creating the people
 var thePhysicalPlayer = new AngryPlayer(
 	new PlayerDef(
@@ -39,10 +36,14 @@ var thePhysicalPlayer = new AngryPlayer(
 // Day 07: God rests and reads documentation
 
 // Day 08: Creating barns
-var thePhysicalBarn = new AngryBarn(theWorld, thePlayer, new BarnDef() );
-var theSprBarn = maingain.spr( );
-*/
+
+var thePhysicalBarn = new AngryBarn( thePhysicalWorld, thePhysicalPlayer, new BarnDef( ) );
+var theSprBarn = new Game.spr('views/pigbig.png', BARN_WIDTH, BARN_HEIGHT, 3, 0);
+theUniverse.push( { physical: thePhysicalBarn, sprite: theSprBarn } );
+
+var thePhysicalCannon = new AngryCannon( thePhysicalWorld, thePhysicalPlayer, new CannonDef() );
+var theSprCannon = new Game.spr('views/cannon.png', CANNON_WIDTH, CANNON_HEIGHT, 0, 0);
+theUniverse.push( { physical: thePhysicalCannon, sprite: theSprCannon } );
+
 // Day N: We put stuff into physical and spiritual arrays
-var thePhysical = [thePhysicalLand];
-var theSpiritual = [theSprLand];
 
