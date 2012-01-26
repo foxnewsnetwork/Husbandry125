@@ -30,5 +30,6 @@ mibbuSetSpritePosition( theSprLand, 0, 550, Z_BACKGROUND);
 var theSprBarn = new Game.spr('views/pigbig.png', BARN_WIDTH, BARN_HEIGHT, 3, 0);
 var theSprCannon = new Game.spr('views/cannon.png', CANNON_WIDTH, CANNON_HEIGHT, 0, 0);
 mibbuSetSpritePosition( theSprBarn, 300, 510, Z_CHARACTERS);
-mibbuSetSpritePosition( theSprCannon, 310, 480, Z_CHARACTERS);
+mibbuSetSpritePosition( theSprCannon, 310, 480, Z_CHARACTERS-1);
+theSprBarn.speed(7);
 

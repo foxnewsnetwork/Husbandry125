@@ -7,12 +7,12 @@ var AngryWorld = function( ){
 	 );
 	 this.bodyDef = new b2BodyDef;
 	 this.bodyDef.type = b2Body.b2_staticBody;
-	 this.bodyDef.position.Set(30, 13.5);
+	 this.bodyDef.position.Set(30, 20);
 	 
 	 this.fixDef = new b2FixtureDef;
 	 this.fixDef.density = 1.0;
 	 this.fixDef.friction = 0.75;
-	 this.fixDef.restitution = 0.2;
+	 this.fixDef.restitution = 0.25;
 	 this.fixDef.shape = new b2PolygonShape;
 	 this.fixDef.shape.SetAsBox(40,1);
 	 
