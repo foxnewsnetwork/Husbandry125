@@ -1,7 +1,7 @@
 // The game object
 var Game = new mibbu(GAME_WIDTH, GAME_HEIGHT);
 Game.fps();
-Game.canvasOff();
+//Game.canvasOff();
 Game.init();
 
 // Function joins together the physical stream with the spiritual (sprite) stream
@@ -20,7 +20,7 @@ function Confluence( physical, sprite ){
 // Same as the above, but this time, the spiritual one takes dominance
 function Conflux( physical, sprite ){ 
 	physical.body.SetPosition( 
-		new b2Vec( 
+		new b2Vec2( 
 			sprite.x * METER_PER_PIXEL,
 			sprite.y * METER_PER_PIXEL
 		) 

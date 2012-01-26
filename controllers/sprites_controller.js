@@ -14,8 +14,8 @@ var theSprWorld = new Game.bg( 'views/bg.png', 4, "S", {x:0,y:0} );
 mibbuSetSpritePosition( theSprWorld, 0, 0, Z_BACKGROUND );
 
 // Day 04: Creating the land
-var theSprLand = new Game.spr('views/land.png', LAND_WIDTH, LAND_HEIGHT, 0, 0);
-mibbuSetSpritePosition( theSprLand, 0, 550, Z_BACKGROUND);
+//var theSprLand = new Game.spr('views/land.png', LAND_WIDTH, LAND_HEIGHT, 1, 0);
+//mibbuSetSpritePosition( theSprLand, 0, 550, Z_BACKGROUND);
 
 
 // Day 05: Creating the animals
@@ -28,8 +28,8 @@ mibbuSetSpritePosition( theSprLand, 0, 550, Z_BACKGROUND);
 // Day 08: Creating barns
 
 var theSprBarn = new Game.spr('views/pigbig.png', BARN_WIDTH, BARN_HEIGHT, 3, 0);
-var theSprCannon = new Game.spr('views/cannon.png', CANNON_WIDTH, CANNON_HEIGHT, 0, 0);
-mibbuSetSpritePosition( theSprBarn, 300, 510, Z_CHARACTERS);
-mibbuSetSpritePosition( theSprCannon, 310, 480, Z_CHARACTERS-1);
+var theSprCannon = new Game.spr('views/cannon.png', CANNON_WIDTH, CANNON_HEIGHT, 1, 0);
+mibbuSetSpritePosition( theSprBarn, 0, 510, Z_CHARACTERS);
+mibbuSetSpritePosition( theSprCannon, 0, 480, Z_CHARACTERS-1);
 theSprBarn.speed(7);
-
+theSprCannon.speed(0);

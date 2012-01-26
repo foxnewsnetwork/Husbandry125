@@ -1,23 +1,10 @@
-// Wrapper function for adding menu items and such to the game
-function addUI() {
-	gbox.addObject({
-		id: "ui_id",
-		group: "ui",
-		tileset: "ui_tileset",
-		initialize: InitializeUI,
-		first: UpdateUI,
-		blit: DrawUI
-	}); // end gbox.addObject
-} // end addUI
+// We implement the move buttons
 
-function InitializeUI(){
+var rightButton = new Game.spr('views/rightbutton.png', MOVE_BUTTON_WIDTH, MOVE_BUTTON_HEIGHT, 1, 0);
+var leftButton = new Game.spr('views/leftbutton.png', MOVE_BUTTON_WIDTH, MOVE_BUTTON_HEIGHT, 1, 0);
 
-}
+mibbuSetSpritePosition( rightButton, 525, 300, Z_GUI);
+mibbuSetSpritePosition( leftButton, 0, 300, Z_GUI);
 
-function UpdateUI(){
-
-}
-
-function DrawUI(){
-
-}
+rightButton.speed(0);
+leftButton.speed(0);

@@ -6,3 +6,15 @@ function mibbuSetSpritePosition( sprite, x, y, z ){
 	sprite.position(x,y,z);
 }
 
+function mibbuMoveSpritePosition( sprite, dx, dy, dz){
+	mibbuSetSpritePosition(
+		sprite,
+		sprite.x + dx,
+		sprite.y + dy,
+		sprite.z + dz
+	);
+}
+
+function box2dMoveObject( body, dx, dy ){
+	
+}

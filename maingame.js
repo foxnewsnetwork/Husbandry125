@@ -3,8 +3,12 @@
 *******************************/
 // This is the final thing to be called and merely starts the game
 var physics;
+var mousecontrol;
+
 $(document).ready(function(){
 	 physics = new Physics;
+	 InitializeMouseController();
+	 
 });
 
 
@@ -16,6 +20,28 @@ function gameLoop(){
 	Confluence( physics.Barn, theSprCannon );
 	
 	// Step 2: Handle input
+	if( CheckWithinBounds( leftButton, mouseX, mouseY ) ){
+		leftButton.frame(1);
+		//if( mouseDown ){
+			mibbuMoveSpritePosition( theSprBarn, -MOVE_SPEED, 0, 0);
+			mibbuMoveSpritePosition( theSprCannon, -MOVE_SPEED, 0, 0); 
+		//}
+	}
+	else if( CheckWithinBounds( rightButton, mouseX, mouseY ) ){
+		rightButton.frame(1);
+		//if( mouseDown ){
+			mibbuMoveSpritePosition( theSprBarn, MOVE_SPEED, 0, 0);
+			mibbuMoveSpritePosition( theSprCannon, MOVE_SPEED, 0, 0);
+		//}
+	}
+	else {
+		leftButton.frame(0);
+		rightButton.frame(0);
+	}
+	
+	// Step 2.5: mass conflux
+	Conflux( physics.Barn, theSprBarn );
+	Conflux( physics.Barn, theSprCannon );
 	
 	// Step 3: Step... into the future
 	physics.update();
