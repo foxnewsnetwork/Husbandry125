@@ -18,6 +18,11 @@ var AngryWorld = function( ){
 	 
 	 this.ground = this.world.CreateBody(this.bodyDef);
 	 this.ground.CreateFixture(this.fixDef);
+	 
+	 this.update = function(){
+		this.world.Step(1 / 60, 10, 10);
+		this.world.ClearForces();
+	 }
 };
 
 
