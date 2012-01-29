@@ -13,7 +13,7 @@ var BarnDef = function( ){
 	// game
 	this.maxspeed = 0.25;
 	this.maxhp = 100;
-	this.cannonDef;
+	this.cannonDef = new AmmoDef();
 };
 
 // Class AngryBarn

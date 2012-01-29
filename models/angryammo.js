@@ -1,3 +1,18 @@
+// Class AmmoDef
+var AmmoDef = function( ){
+	// physics
+	this.bodyDef = new b2BodyDef;
+	this.fixDef = new b2FixtureDef;
+	this.fixDef.density = 2.0;
+	this.fixDef.friction = 1.0;
+	this.fixDef.restitution = 0.2;
+	this.bodyDef.type = b2Body.b2_dynamicBody;
+	this.fixDef.shape = new b2CircleShape( AMMO_WIDTH / 2 * METER_PER_PIXEL );
+	//this.fixDef.shape.SetAsBox( AMMO_WIDTH * METER_PER_PIXEL, AMMO_HEIGHT * METER_PER_PIXEL );
+	
+	// game
+};
+
 var AngryAmmo = function( world, player, ammoDef ){
 	// Creating physics components
 	this.body = world.CreateBody( ammoDef.bodyDef );
