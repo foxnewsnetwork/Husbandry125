@@ -13,7 +13,7 @@ var BarnDef = function( ){
 	// game
 	this.maxspeed = 0.25;
 	this.maxhp = 100;
-	this.cannonDef = new AmmoDef();
+	this.cannonDef = new CannonDef();
 };
 
 // Class AngryBarn
@@ -27,12 +27,17 @@ var AngryBarn = function(world, player, barnDef) {
 	this.currenthp = barnDef.maxhp;
 //	this.image = barnDef.image;
 	this.player = player;
-	//this.cannon = AngryCannon( world, player, barnDef.cannonDef );
+	this.cannon = new AngryCannon( world, player, barnDef.cannonDef );
 	this.maxspeed = barnDef.maxspeed;
 	
+	// animation
+	this.sprite = new Game.spr('views/pigbig.png', BARN_WIDTH, BARN_HEIGHT, 3, 0);
 	// Game world connection functions
-	this.draw = function( ) { 
-		// TODO: implement me!
+	this.initialize = function(x,y) { 
+		mibbuSetSpritePosition( this.sprite, x, y, Z_CHARACTERS);
+		this.sprite.speed(7);
+		this.conflux();
+		this.cannon.initialize(x+10, y-CANNON_HEIGHT);
 	}
 	this.destroy = function( ){
 		// TODO: implement me! (all I need to do is remove this object from the game)
@@ -46,7 +51,23 @@ var AngryBarn = function(world, player, barnDef) {
 	
 	// Game mechanics macros 
 	this.move = function( direction ){
-		// TODO: apply the correct force to move in the given direction (either left or right) 
+		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0);  
+		this.conflux();
+		this.cannon.move(direction);
+	}
+	this.confluence = function(){
+		Confluence( this.body, this.sprite );
+	}
+	this.conflux = function(){
+		Conflux( this.body, this.sprite );
+	}
+	this.show = function( camera ){
+		this.confluence();
+		camera.show(this.sprite);
+		this.cannon.show(camera);
+	}
+	this.fire = function( velocity ){
+		this.cannon.fire( velocity );
 	}
 };
 

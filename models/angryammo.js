@@ -15,13 +15,33 @@ var AmmoDef = function( ){
 
 var AngryAmmo = function( world, player, ammoDef ){
 	// Creating physics components
-	this.body = world.CreateBody( ammoDef.bodyDef );
+	this.body = world.world.CreateBody( ammoDef.bodyDef );
 	this.body.CreateFixture( ammoDef.fixDef );
 	
 	// Game stats
-	this.image = ammoDef.image;
 	this.player = player;
 	
+	this.sprite = new Game.spr('views/ammo.png', AMMO_WIDTH, AMMO_HEIGHT, 1, 0);
+	
+	this.initialize = function(x,y) {
+		mibbuSetSpritePosition( this.sprite, x, y, Z_CHARACTERS-1);
+		this.conflux();
+		this.sprite.speed(0);
+	}
+	this.move = function( direction ){
+		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0);  
+		this.conflux();
+	}
+	this.confluence = function(){
+		Confluence( this.body, this.sprite );
+	}
+	this.conflux = function(){
+		Conflux( this.body, this.sprite );
+	}
+	this.show = function(camera){
+		this.confluence();
+		camera.show(this.sprite);
+	}
 	// Game world connection functions
 	this.draw = function( ) { 
 		// TODO: implement me!
@@ -32,7 +52,7 @@ var AngryAmmo = function( world, player, ammoDef ){
 	
 	// Game mechanics macros
 	this.fire = function( velocity ){
-		// TODO: should be called by the cannon functions
+		this.body.SetVelocity( velocity )
 	}
 };
 

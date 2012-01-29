@@ -11,15 +11,15 @@ Game.init();
 function Confluence( physical, sprite ){ 
 	mibbuSetSpritePosition( 
 		sprite, 
-		physical.body.GetPosition().x * PIXEL_PER_METER, 
-		physical.body.GetPosition().y * PIXEL_PER_METER,
+		physical.GetPosition().x * PIXEL_PER_METER, 
+		physical.GetPosition().y * PIXEL_PER_METER,
 		sprite.z
 	);
 }
 
 // Same as the above, but this time, the spiritual one takes dominance
 function Conflux( physical, sprite ){ 
-	physical.body.SetPosition( 
+	physical.SetPosition( 
 		new b2Vec2( 
 			sprite.x * METER_PER_PIXEL,
 			sprite.y * METER_PER_PIXEL

@@ -23,6 +23,18 @@ var AngryWorld = function( ){
 		this.world.Step(1 / 60, 10, 10);
 		this.world.ClearForces();
 	 }
+	 
+	 // animation methods
+	 this.sprite = new Game.bg( 'views/bg.png', 4, "S", {x:0,y:0} );
+	 this.draw = function(){
+		mibbuSetSpritePosition( this.sprite, 0, 0, Z_BACKGROUND );
+	 }
+	 this.confluence = function(){
+		// Not needed
+	 }
+	 this.conflux = function(){
+		// Not needed
+	 }
 };
 
 

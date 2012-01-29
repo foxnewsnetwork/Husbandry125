@@ -2,13 +2,20 @@
 * The Final Line Between Worlds *
 *******************************/
 // This is the final thing to be called and merely starts the game
-var physics;
 var mousecontrol;
+var theWorld, thePlayer, theLand, theBarn, theCamera;
 
 $(document).ready(function(){
-	 physics = new Physics;
-	 InitializeMouseController();
-	 
+	theWorld = new AngryWorld();
+	thePlayer = new AngryPlayer( new PlayerDef() );
+	theLand = theWorld.ground;
+	var barnDef = new BarnDef();
+	barnDef.cannonDef = new CannonDef();
+	barnDef.cannonDef.ammoDef = new AmmoDef();
+	theBarn = new AngryBarn( theWorld, thePlayer, barnDef );
+	theBarn.initialize(250, 250);
+	theCamera = new AngryCamera(); 
+	InitializeMouseController();
 });
 
 
@@ -16,35 +23,24 @@ function gameLoop(){
 	// Step 0: Initialize physics as necessary
 
 	// Step 1: Mass confluence
-	Confluence( physics.Barn, theSprBarn );
-	Confluence( physics.Barn, theSprCannon );
+	theBarn.show(theCamera);
 	
 	// Step 2: Handle input
 	if( CheckWithinBounds( leftButton, mouseX, mouseY ) ){
 		leftButton.frame(1);
-		//if( mouseDown ){
-			mibbuMoveSpritePosition( theSprBarn, -MOVE_SPEED, 0, 0);
-			mibbuMoveSpritePosition( theSprCannon, -MOVE_SPEED, 0, 0); 
-		//}
+		theBarn.move(-1);
 	}
 	else if( CheckWithinBounds( rightButton, mouseX, mouseY ) ){
 		rightButton.frame(1);
-		//if( mouseDown ){
-			mibbuMoveSpritePosition( theSprBarn, MOVE_SPEED, 0, 0);
-			mibbuMoveSpritePosition( theSprCannon, MOVE_SPEED, 0, 0);
-		//}
+		theBarn.move(1);
 	}
 	else {
 		leftButton.frame(0);
 		rightButton.frame(0);
 	}
 	
-	// Step 2.5: mass conflux
-	Conflux( physics.Barn, theSprBarn );
-	Conflux( physics.Barn, theSprCannon );
-	
 	// Step 3: Step... into the future
-	physics.update();
+	theWorld.update();
 } 
 
 Game.on();
