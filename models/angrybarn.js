@@ -13,7 +13,7 @@ var BarnDef = function( ){
 	// game
 	this.maxspeed = 0.25;
 	this.maxhp = 100;
-	this.cannonDef = new CannonDef();
+	this.ammoDef = new AmmoDef();
 };
 
 // Class AngryBarn
@@ -27,17 +27,20 @@ var AngryBarn = function(world, player, barnDef) {
 	this.currenthp = barnDef.maxhp;
 //	this.image = barnDef.image;
 	this.player = player;
-	this.cannon = new AngryCannon( world, player, barnDef.cannonDef );
+	this.ammo = new AngryAmmo( world, player, barnDef.ammoDef );
 	this.maxspeed = barnDef.maxspeed;
 	
 	// animation
 	this.sprite = new Game.spr('views/pigbig.png', BARN_WIDTH, BARN_HEIGHT, 3, 0);
+	this.cannonSprite = new Game.spr('views/cannon.png', CANNON_WIDTH, CANNON_HEIGHT, 1, 0);
 	// Game world connection functions
 	this.initialize = function(x,y) { 
 		mibbuSetSpritePosition( this.sprite, x, y, Z_CHARACTERS);
+		mibbuSetSpritePosition( this.cannonSprite, x+10, y-CANNON_HEIGHT, Z_CHARACTERS);
+		this.cannonSprite.speed(0);
 		this.sprite.speed(7);
 		this.conflux();
-		this.cannon.initialize(x+10, y-CANNON_HEIGHT);
+		this.ammo.initialize(x + BARN_WIDTH, y);
 	}
 	this.destroy = function( ){
 		// TODO: implement me! (all I need to do is remove this object from the game)
@@ -51,12 +54,15 @@ var AngryBarn = function(world, player, barnDef) {
 	
 	// Game mechanics macros 
 	this.move = function( direction ){
-		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0);  
+		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0); 
+		mibbuMoveSpritePosition( this.cannonSprite, direction * MOVE_SPEED, 0, 0); 		
 		this.conflux();
-		this.cannon.move(direction);
+		this.ammo.move(direction);
 	}
 	this.confluence = function(){
 		Confluence( this.body, this.sprite );
+		Confluence( this.body, this.cannonSprite );
+		mibbuMoveSpritePosition( this.cannonSprite,10,-CANNON_HEIGHT,0);
 	}
 	this.conflux = function(){
 		Conflux( this.body, this.sprite );
@@ -64,10 +70,10 @@ var AngryBarn = function(world, player, barnDef) {
 	this.show = function( camera ){
 		this.confluence();
 		camera.show(this.sprite);
-		this.cannon.show(camera);
+		this.ammo.show(camera);
 	}
 	this.fire = function( velocity ){
-		this.cannon.fire( velocity );
+		this.ammo.fire( velocity );
 	}
 };
 

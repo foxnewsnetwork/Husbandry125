@@ -21,12 +21,12 @@ var AngryAmmo = function( world, player, ammoDef ){
 	// Game stats
 	this.player = player;
 	
-	this.sprite = new Game.spr('views/ammo.png', AMMO_WIDTH, AMMO_HEIGHT, 1, 0);
+	this.sprite = new Game.spr('views/pig.png', AMMO_WIDTH, AMMO_HEIGHT, 1, 0);
 	
 	this.initialize = function(x,y) {
 		mibbuSetSpritePosition( this.sprite, x, y, Z_CHARACTERS-1);
 		this.conflux();
-		this.sprite.speed(0);
+		this.sprite.speed(6);
 	}
 	this.move = function( direction ){
 		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0);  

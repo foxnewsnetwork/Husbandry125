@@ -10,8 +10,6 @@ $(document).ready(function(){
 	thePlayer = new AngryPlayer( new PlayerDef() );
 	theLand = theWorld.ground;
 	var barnDef = new BarnDef();
-	barnDef.cannonDef = new CannonDef();
-	barnDef.cannonDef.ammoDef = new AmmoDef();
 	theBarn = new AngryBarn( theWorld, thePlayer, barnDef );
 	theBarn.initialize(250, 250);
 	theCamera = new AngryCamera(); 
