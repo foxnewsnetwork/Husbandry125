@@ -17,8 +17,7 @@ function gameLoop(){
 
 	// Step 1: Mass confluence
 	Confluence( physics.Barn, theSprBarn );
-	Confluence( physics.Barn, theSprCannon );
-	
+
 	// Step 2: Handle input
 	if( CheckWithinBounds( leftButton, mouseX, mouseY ) ){
 		leftButton.frame(1);
@@ -34,6 +33,17 @@ function gameLoop(){
 			mibbuMoveSpritePosition( theSprCannon, MOVE_SPEED, 0, 0);
 		//}
 	}
+    else if (mouseDown)
+    {
+//        b2Vec2 vel = physics.Barn.GetLinearVelocity();
+//        vel.y = 10;//upwards - don't change x velocity
+//        physics.Barn.body.SetLinearVelocity( vel );
+        var impulse = physics.Barn.body.GetMass() * 2;
+        var vel = new b2Vec2(0,-impulse)
+
+        physics.Barn.body.ApplyImpulse(vel, physics.Barn.body.GetWorldCenter())
+
+    }
 	else {
 		leftButton.frame(0);
 		rightButton.frame(0);
@@ -41,8 +51,7 @@ function gameLoop(){
 	
 	// Step 2.5: mass conflux
 	Conflux( physics.Barn, theSprBarn );
-	Conflux( physics.Barn, theSprCannon );
-	
+
 	// Step 3: Step... into the future
 	physics.update();
 } 

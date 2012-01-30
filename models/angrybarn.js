@@ -3,6 +3,7 @@ var BarnDef = function( ){
 	// physics
 	this.bodyDef = new b2BodyDef;
 	this.fixDef = new b2FixtureDef;
+
 	this.fixDef.density = 4.0;
 	this.fixDef.friction = 1.0;
 	this.fixDef.restitution = 0.2;
