@@ -1,6 +1,7 @@
 // Game Constants
 
 var IMAGE_DIR = 'views/',
+	FRAME_INCREMENT = 1 / 60.0;
     GAME_WIDTH = 600,
     GAME_HEIGHT = 600,
     Z_BACKGROUND = 1,

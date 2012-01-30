@@ -29,6 +29,7 @@ var AngryBarn = function(world, player, barnDef) {
 	this.player = player;
 	this.ammo = new AngryAmmo( world, player, barnDef.ammoDef );
 	this.maxspeed = barnDef.maxspeed;
+	this.mode = BARN_MODE_MOVE;
 	
 	// animation
 	this.sprite = new Game.spr('views/pigbig.png', BARN_WIDTH, BARN_HEIGHT, 3, 0);
@@ -51,13 +52,17 @@ var AngryBarn = function(world, player, barnDef) {
 	this.load = function(world, player){
 		// TODO: implement me! ( I need to load from the db the player's vehicle )
 	}
-	
 	// Game mechanics macros 
 	this.move = function( direction ){
 		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0); 
 		mibbuMoveSpritePosition( this.cannonSprite, direction * MOVE_SPEED, 0, 0); 		
 		this.conflux();
 		this.ammo.move(direction);
+	}
+	this.deltaconfluence = function(){
+		DeltaConfluence( this.body, this.sprite );
+		DeltaConfluence( this.body, this.cannonSprite );
+		//mibbuMoveSpritePosition( this.cannonSprite,10,-CANNON_HEIGHT,0);
 	}
 	this.confluence = function(){
 		Confluence( this.body, this.sprite );
@@ -68,8 +73,9 @@ var AngryBarn = function(world, player, barnDef) {
 		Conflux( this.body, this.sprite );
 	}
 	this.show = function( camera ){
-		this.confluence();
+		this.deltaconfluence();
 		camera.show(this.sprite);
+		camera.show(this.cannonSprite);
 		this.ammo.show(camera);
 	}
 	this.fire = function( velocity ){

@@ -6,13 +6,14 @@ var mousecontrol;
 var theWorld, thePlayer, theLand, theBarn, theCamera;
 
 $(document).ready(function(){
+	theCamera = new AngryCamera(); 
 	theWorld = new AngryWorld();
 	thePlayer = new AngryPlayer( new PlayerDef() );
 	theLand = theWorld.ground;
 	var barnDef = new BarnDef();
 	theBarn = new AngryBarn( theWorld, thePlayer, barnDef );
 	theBarn.initialize(250, 250);
-	theCamera = new AngryCamera(); 
+	theCamera.follow( theBarn.ammo );
 	InitializeMouseController();
 });
 

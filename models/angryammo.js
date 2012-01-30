@@ -20,7 +20,7 @@ var AngryAmmo = function( world, player, ammoDef ){
 	
 	// Game stats
 	this.player = player;
-	
+	this.speed = 0;
 	this.sprite = new Game.spr('views/pig.png', AMMO_WIDTH, AMMO_HEIGHT, 1, 0);
 	
 	this.initialize = function(x,y) {
@@ -29,18 +29,26 @@ var AngryAmmo = function( world, player, ammoDef ){
 		this.sprite.speed(6);
 	}
 	this.move = function( direction ){
+		this.speed = direction * MOVE_SPEED;
 		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0);  
 		this.conflux();
 	}
 	this.confluence = function(){
 		Confluence( this.body, this.sprite );
 	}
+	this.deltaconfluence = function(){
+		DeltaConfluence( this.body, this.sprite );
+	}
 	this.conflux = function(){
 		Conflux( this.body, this.sprite );
 	}
 	this.show = function(camera){
-		this.confluence();
+		if( this.speed < 1 ){
+			this.body.SetAngularVelocity(0);
+		}
+		this.deltaconfluence();
 		camera.show(this.sprite);
+		this.speed = this.body.GetLinearVelocity().x * PIXEL_PER_METER;
 	}
 	// Game world connection functions
 	this.draw = function( ) { 
@@ -52,7 +60,8 @@ var AngryAmmo = function( world, player, ammoDef ){
 	
 	// Game mechanics macros
 	this.fire = function( velocity ){
-		this.body.SetVelocity( velocity )
+		this.speed = velocity.x * PIXEL_PER_METER;
+		this.body.SetLinearVelocity( velocity )
 	}
 };
 

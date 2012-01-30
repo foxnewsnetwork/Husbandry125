@@ -17,12 +17,23 @@ function Confluence( physical, sprite ){
 	);
 }
 
+// Does confluence on an object's velocity.
+// In other words, if physical displaces v then sprite displaces v * PIXEL_PER_METER
+function DeltaConfluence( physical, sprite ){ 
+	mibbuMoveSpritePosition( 
+		sprite,
+		physical.GetLinearVelocity().x * PIXEL_PER_METER * FRAME_INCREMENT ,
+		physical.GetLinearVelocity().y * PIXEL_PER_METER * FRAME_INCREMENT ,
+		0
+	);
+}
+
 // Same as the above, but this time, the spiritual one takes dominance
 function Conflux( physical, sprite ){ 
 	physical.SetPosition( 
 		new b2Vec2( 
-			sprite.x * METER_PER_PIXEL,
-			sprite.y * METER_PER_PIXEL
+			(sprite.x)* METER_PER_PIXEL,
+			(sprite.y)* METER_PER_PIXEL
 		) 
 	);
 }
