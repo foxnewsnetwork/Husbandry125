@@ -25,11 +25,11 @@ var AngryWorld = function( ){
 	 }
 	 
 	 // animation methods
-	 this.sprite = new Game.bg( 'views/bg.png', 0, "E", {x:0,y:0} );
+	 this.sprite = new Game.bg( 'views/backgroundfull.png', 0, "E", {x:0,y:0} );
 	 //this.sprite2 = new Game.bg('views/bg02.png', 2, "E", {x:600,y:123});
 	 //mibbuSetSpritePosition( this.sprite2, 0, 400, Z_BACKGROUND + 1 );
-	// this.sprite2.speed(3);
-	 //this.sprite2.on();
+	this.sprite.speed(0);
+	 this.sprite.on();
 	 this.draw = function(){
 		mibbuSetSpritePosition( this.sprite, 0, 0, Z_BACKGROUND );
 	 }
