@@ -25,13 +25,14 @@ var AngryWorld = function( ){
 	 }
 	 
 	 // animation methods
-	 this.sprite = new Game.bg( 'views/backgroundfull.png', 0, "E", {x:0,y:0} );
+	 //this.sprite = new Game.bg( 'views/backgroundfull.png', 0, "E", {x:0,y:0} );
+	 //this.sprite.position( 500, 0 ,1 );
 	 //this.sprite2 = new Game.bg('views/bg02.png', 2, "E", {x:600,y:123});
 	 //mibbuSetSpritePosition( this.sprite2, 0, 400, Z_BACKGROUND + 1 );
-	this.sprite.speed(0);
-	 this.sprite.on();
+	//this.sprite.speed(0);
+	 //this.sprite.on();
 	 this.draw = function(){
-		mibbuSetSpritePosition( this.sprite, 0, 0, Z_BACKGROUND );
+		//mibbuSetSpritePosition( this.sprite, 0, 0, Z_BACKGROUND );
 	 }
 	 this.confluence = function(){
 		// Not needed
