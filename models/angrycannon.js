@@ -11,7 +11,7 @@ var CannonDef = function( ){
 	// Game
 	this.maxspeed = 0.25;
 	this.maxhp = 100;
-	this.ammoDef;
+	this.ammoDef = new AmmoDef();
 };
 
 var AngryCannon = function( world, player, cannonDef ) {
@@ -22,7 +22,34 @@ var AngryCannon = function( world, player, cannonDef ) {
 	
 	// Game stats
 	this.player = player;
+	//this.ammo = new AngryAmmo( cannonDef.ammoDef );
 	
-	
+	// animation use
+	this.sprite = new Game.spr('views/cannon.png', CANNON_WIDTH, CANNON_HEIGHT, 1, 0);
+	this.initialize = function(x,y){
+		mibbuSetSpritePosition( this.sprite, x, y, Z_CHARACTERS-1);
+		this.conflux();
+		this.sprite.speed(0);
+		//this.ammo.initialize(x, y + AMMO_HEIGHT);
+	}
+	this.move = function( direction ){
+		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0);  
+		this.conflux();
+		//this.ammo.move(direction);
+	}
+	this.confluence = function(){
+		Confluence( this.body, this.sprite );
+	}
+	this.conflux = function(){
+		Conflux( this.body, this.sprite );
+	}
+	this.show = function(camera){
+		this.confluence();
+		camera.show(this.sprite);
+		//this.ammo.show(camera);
+	}
+	this.fire = function( velocity ){
+		this.ammo.fire( velocity );
+	}
 };
 

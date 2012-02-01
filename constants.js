@@ -1,6 +1,7 @@
 // Game Constants
 
 var IMAGE_DIR = 'views/',
+	FRAME_INCREMENT = 1 / 60.0;
     GAME_WIDTH = 600,
     GAME_HEIGHT = 600,
     Z_BACKGROUND = 1,
@@ -24,5 +25,12 @@ var IMAGE_DIR = 'views/',
 	CANNON_HEIGHT = 45,
 	MOVE_BUTTON_WIDTH = 75,
 	MOVE_BUTTON_HEIGHT = 75,
-	MOVE_SPEED = 2
+
+	MOVE_SPEED = 0.2,
+	AMMO_WIDTH = 30,
+	AMMO_HEIGHT = 23,
+	BARN_MODE_MOVE = 0,
+	BARN_MODE_FIRE = 1,
+    SHOT_RADIUS = 2500
+
 	;

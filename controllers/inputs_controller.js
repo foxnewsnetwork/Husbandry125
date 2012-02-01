@@ -33,6 +33,27 @@ function CheckWithinBounds( sprite, x, y ){
 	}
 	return false;
 }
+
+
+  //Trigger to see if mouse is being moved.
+  function handleAmmoMove(e) {
+      //Move the ammo
+          theBarn.ammo.mouseMove(theBarn.sprite.x + AMMO_WIDTH/2,theBarn.sprite.y-150);
+   };
+
+
+   //If the mouse is released. Fire it!
+   function handleAmmoRelease(e) {
+       //Remove listener so ammo isn't moved.
+       document.removeEventListener("mousemove", handleAmmoMove, true);
+
+       //Fire the ammo.
+       theBarn.ammo.fire(theBarn.sprite.x + AMMO_WIDTH/2,theBarn.sprite.y-150);
+
+       //remove listener so we don't accidentally fire ammo again.
+       document.removeEventListener("mouseup", handleAmmoRelease, true);
+
+   }
 /*
 var isLeftDown, isRightDown;
  
