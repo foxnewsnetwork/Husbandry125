@@ -11,8 +11,8 @@ Game.hitsOn();
 function Confluence( physical, sprite ){ 
 	mibbuSetSpritePosition( 
 		sprite, 
-		physical.GetPosition().x * PIXEL_PER_METER, 
-		physical.GetPosition().y * PIXEL_PER_METER,
+		physical.GetPosition().x * PIXEL_PER_METER - theCamera.deltaX, 
+		physical.GetPosition().y * PIXEL_PER_METER - theCamera.deltaY,
 		sprite.z
 	);
 }
@@ -33,8 +33,8 @@ function Conflux( physical, sprite ){
 
 	physical.SetPosition( 
 		new b2Vec2( 
-			(sprite.x)* METER_PER_PIXEL,
-			(sprite.y)* METER_PER_PIXEL
+			(sprite.x - theCamera.deltaX)* METER_PER_PIXEL,
+			(sprite.y - theCamera.deltaY)* METER_PER_PIXEL
 		) 
 	);
 }

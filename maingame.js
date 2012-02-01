@@ -2,7 +2,7 @@
 * The Final Line Between Worlds *
 *******************************/
 // This is the final thing to be called and merely starts the game
-var mousecontrol;
+var mousecontrol, bgcontrol;
 var theWorld, thePlayer, theLand, theBarn, theCamera;
 
 $(document).ready(function(){
@@ -16,6 +16,8 @@ $(document).ready(function(){
     theBarn2 = new AngryBarn( theWorld,thePlayer,barnDef);
     theBarn2.initialize(100,1);
 	theCamera.follow( theBarn.ammo );
+	bgcontrol = new BackgroundController();
+	bgcontrol.camera = theCamera;
 	InitializeMouseController();
 
      theBarn.ammo.sprite.hit(theBarn2.sprite, function() {
@@ -30,6 +32,11 @@ function gameLoop(){
 
 	theBarn.show(theCamera);
 	theBarn2.show(theCamera);
+
+	theCamera.follow( theBarn.ammo );
+	bgcontrol.show(theCamera);
+	
+
 	// Step 2: Handle input
 	if( CheckWithinBounds( leftButton, mouseX, mouseY ) ){
 		leftButton.frame(1);
