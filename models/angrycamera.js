@@ -11,8 +11,8 @@ var AngryCamera = function(){
 	this.follow = function(angrymodel){
 		this.originX2 = this.originX + 0;
 		this.originY2 = this.originY + 0;
-		this.originX = angrymodel.sprite.x + 0;
-		this.originY = angrymodel.sprite.y + 0;
+		this.originX = angrymodel.absX - GAME_WIDTH / 2;
+		this.originY = angrymodel.absY - GAME_HEIGHT / 2;
 		this.deltaX = this.originX2 - this.originX;
 		this.deltaY = this.originY2 - this.originY;
 	}
@@ -20,7 +20,13 @@ var AngryCamera = function(){
 		this.originX = x;
 		this.originY = y;
 	}
-	this.show = function(sprite){
+	this.show = function(sprite, absX, absY, absZ){
+		mibbuSetSpritePosition( 
+			sprite,
+			absX - this.originX,
+			absY,
+			sprite.z
+		);
 		// The idea is that, whatever is being followed, takes a constant 
 		$("#debug").html("cameraX: " + this.deltaX + "cameraY: " + this.deltaY);
 	}

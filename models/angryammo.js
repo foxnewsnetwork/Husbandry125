@@ -25,11 +25,17 @@ var AngryAmmo = function( world, player, ammoDef ){
 	this.player = player;
 	this.speed = 0;
 	this.sprite = new Game.spr('views/pig.png', AMMO_WIDTH, AMMO_HEIGHT, 1, 0);
+	this.absX;
+	this.absY;
+	this.absZ;
 
 	this.flying = false;
 	this.initialize = function(x,y) {
 		mibbuSetSpritePosition( this.sprite, x, y, Z_CHARACTERS-1);
-		this.conflux();
+		this.absX = x;
+		this.absY = y;
+		this.absZ = Z_CHARACTERS-1;
+		this.completeConflux();
 		this.sprite.speed(6);
 	}
     this.reset = function(x,y) {
@@ -39,8 +45,9 @@ var AngryAmmo = function( world, player, ammoDef ){
     }
 	this.move = function( direction ){
 		this.speed = direction * MOVE_SPEED;
-		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0);  
-		this.conflux();
+		//mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0);
+		this.absX += direction * MOVE_SPEED;
+		this.completeConflux();
 	}
 	this.confluence = function(){
 		Confluence( this.body, this.sprite );
@@ -50,6 +57,12 @@ var AngryAmmo = function( world, player, ammoDef ){
 	}
 	this.conflux = function(){
 		Conflux( this.body, this.sprite );
+	}
+	this.completeConfluence = function() { 
+		CompleteConfluence( this );
+	}
+	this.completeConflux = function() { 
+		CompleteConflux( this ); 	
 	}
     //Calculate mouse movement
     this.mouseMove = function(barnX, barnY) {
@@ -72,11 +85,12 @@ var AngryAmmo = function( world, player, ammoDef ){
 		}
     }
 	this.show = function(camera){
+		this.completeConfluence();
 		if( this.speed < 1 ){
 			this.body.SetAngularVelocity(0);
 		}
-		this.deltaconfluence();
-		camera.show(this.sprite);
+		//this.deltaconfluence();
+		camera.show(this.sprite, this.absX, this.absY, this.absZ);
 		this.speed = this.body.GetLinearVelocity().x * PIXEL_PER_METER;
 	}
 	// Game world connection functions

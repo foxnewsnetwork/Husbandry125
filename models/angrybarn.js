@@ -34,13 +34,24 @@ var AngryBarn = function(world, player, barnDef) {
 	this.maxspeed = barnDef.maxspeed;
 	this.mode = BARN_MODE_MOVE;
 	
+	// Introducing the concept of absolute pixel coordinates
+	this.absX;
+	this.absY;
+	this.absZ;
+	
 	// animation
 	this.sprite = new Game.spr('views/pigbig.png', BARN_WIDTH, BARN_HEIGHT, 3, 0);
 	this.cannonSprite = new Game.spr('views/cannon.png', CANNON_WIDTH, CANNON_HEIGHT, 1, 0);
 	// Game world connection functions
 	this.initialize = function(x,y) { 
+		this.absX = x;
+		this.absY = y;
+		this.cannonSprite.absX = x + 10;
+		this.cannonSprite.absY = y - CANNON_HEIGHT;
+		
 		mibbuSetSpritePosition( this.sprite, x, y, Z_CHARACTERS);
 		mibbuSetSpritePosition( this.cannonSprite, x+10, y-CANNON_HEIGHT, Z_CHARACTERS);
+		
 		this.cannonSprite.speed(0);
 		this.sprite.speed(7);
 		this.conflux();
@@ -57,9 +68,10 @@ var AngryBarn = function(world, player, barnDef) {
 	}
 	// Game mechanics macros 
 	this.move = function( direction ){
-		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0); 
-		mibbuMoveSpritePosition( this.cannonSprite, direction * MOVE_SPEED, 0, 0); 		
-		this.conflux();
+		//mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0); 
+		//mibbuMoveSpritePosition( this.cannonSprite, direction * MOVE_SPEED, 0, 0); 	
+		this.absX += direction * MOVE_SPEED;
+		this.completeConflux();
 		this.ammo.move(direction);
 	}
     this.mouseSet = function(){
@@ -71,6 +83,12 @@ var AngryBarn = function(world, player, barnDef) {
 		DeltaConfluence( this.body, this.cannonSprite );
 		//mibbuMoveSpritePosition( this.cannonSprite,10,-CANNON_HEIGHT,0);
 	}
+	this.completeConfluence = function() { 
+		CompleteConfluence( this );
+	}
+	this.completeConflux = function() { 
+		CompleteConflux( this ); 	
+	}
 	this.confluence = function(){
 		Confluence( this.body, this.sprite );
 		Confluence( this.body, this.cannonSprite );
@@ -80,9 +98,9 @@ var AngryBarn = function(world, player, barnDef) {
 		Conflux( this.body, this.sprite );
 	}
 	this.show = function( camera ){
-		this.deltaconfluence();
-		camera.show(this.sprite);
-		camera.show(this.cannonSprite);
+		this.completeConfluence();
+		camera.show(this.sprite, this.absX, this.absY, this.absZ);
+		camera.show(this.cannonSprite, this.absX, this.absY, this.absZ);
 		this.ammo.show(camera);
 	}
 	this.fire = function( velocity ){

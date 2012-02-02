@@ -8,11 +8,26 @@ Game.hitsOn();
 // The physical world takes predominance over the spiritual one
 // Remember, there is a 1:30 ratio between the physical model and the spiritual one
 
+function CompleteConfluence( angrymodel ){
+	angrymodel.absX = angrymodel.body.GetPosition().x * PIXEL_PER_METER;
+	angrymodel.absY = angrymodel.body.GetPosition().y * PIXEL_PER_METER;
+	angrymodel.absZ = angrymodel.sprite.z;
+}
+
+function CompleteConflux( angrymodel ){
+	angrymodel.body.SetPosition(
+		new b2Vec2(
+			angrymodel.absX * METER_PER_PIXEL ,
+			angrymodel.absY * METER_PER_PIXEL
+		)
+	);
+}
+
 function Confluence( physical, sprite ){ 
 	mibbuSetSpritePosition( 
 		sprite, 
-		physical.GetPosition().x * PIXEL_PER_METER - theCamera.deltaX, 
-		physical.GetPosition().y * PIXEL_PER_METER - theCamera.deltaY,
+		physical.GetPosition().x * PIXEL_PER_METER, 
+		physical.GetPosition().y * PIXEL_PER_METER,
 		sprite.z
 	);
 }
@@ -33,8 +48,8 @@ function Conflux( physical, sprite ){
 
 	physical.SetPosition( 
 		new b2Vec2( 
-			(sprite.x - theCamera.deltaX)* METER_PER_PIXEL,
-			(sprite.y - theCamera.deltaY)* METER_PER_PIXEL
+			(sprite.x)* METER_PER_PIXEL,
+			(sprite.y)* METER_PER_PIXEL
 		) 
 	);
 }
