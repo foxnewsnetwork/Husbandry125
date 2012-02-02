@@ -1,6 +1,7 @@
 // Class AngryPlayer
-var AngryPlayer = function( playerDef ) { 
+var AngryPlayer = function(id ,playerDef ) {
 	// ID parameters
+    this.id = id;
 	this.username = playerDef.username;
 	this.email = playerDef.email;
 	this.payment_method = playerDef.payment_method;

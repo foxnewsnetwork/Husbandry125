@@ -6,10 +6,10 @@ var BarnDef = function( ){
 
 	this.fixDef.density = 0.1;
 	this.fixDef.friction = 0.50;
-	this.fixDef.restitution = 0.2;
+	this.fixDef.restitution = .4;
 	this.bodyDef.type = b2Body.b2_dynamicBody;
 	this.fixDef.shape = new b2PolygonShape;
-	this.fixDef.shape.SetAsBox( (BARN_WIDTH )  * METER_PER_PIXEL, (BARN_HEIGHT ) * METER_PER_PIXEL  );
+	this.fixDef.shape.SetAsBox( (BARN_WIDTH - 10 )  * METER_PER_PIXEL, (BARN_HEIGHT - 10) * METER_PER_PIXEL  );
 	
 	// game
 	this.maxspeed = 0.25;
@@ -20,6 +20,8 @@ var BarnDef = function( ){
 // Class AngryBarn
 var AngryBarn = function(world, player, barnDef) {
 	// Initializing physics
+     barnDef.bodyDef.userData = player.id * 2;
+
 	this.body = world.world.CreateBody( barnDef.bodyDef );
 	this.body.CreateFixture( barnDef.fixDef );
 	
@@ -86,6 +88,9 @@ var AngryBarn = function(world, player, barnDef) {
 	this.fire = function( velocity ){
 		this.ammo.fire( velocity );
 	}
+    this.wasHit = function(){
+        alert("OUCH I WAS HIT");
+    }
 };
 
 

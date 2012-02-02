@@ -40,6 +40,25 @@ var AngryWorld = function( ){
 	 this.conflux = function(){
 		// Not needed
 	 }
+    this.addContactListener = function(callbacks) {
+        var listener = new Box2D.Dynamics.b2ContactListener;
+        if (callbacks.BeginContact) listener.BeginContact = function(contact) {
+            callbacks.BeginContact(contact.GetFixtureA().GetBody().GetUserData(),
+                                   contact.GetFixtureB().GetBody().GetUserData());
+        }
+        if (callbacks.EndContact) listener.EndContact = function(contact) {
+            callbacks.EndContact(contact.GetFixtureA().GetBody().GetUserData(),
+                                 contact.GetFixtureB().GetBody().GetUserData());
+        }
+        if (callbacks.PostSolve) listener.PostSolve = function(contact, impulse) {
+            callbacks.PostSolve(contact.GetFixtureA().GetBody().GetUserData(),
+                                 contact.GetFixtureB().GetBody().GetUserData(),
+                                 impulse.normalImpulses[0]);
+        }
+        this.world.SetContactListener(listener);
+    }
+
 };
+
 
 
