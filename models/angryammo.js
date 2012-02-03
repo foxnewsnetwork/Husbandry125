@@ -67,9 +67,10 @@ var AngryAmmo = function( world, player, ammoDef ){
     //Calculate mouse movement
     this.mouseMove = function(barnX, barnY) {
         //Have the actual ammo move with the mouse.
+
+        this.completeConfluence();
         this.sprite.x = mouseX - AMMO_WIDTH/2 ;
         this.sprite.y = mouseY - AMMO_HEIGHT/2 ;
-
         //Calculate distance of sprite from starting point.
         var distanceX = this.sprite.x-barnX;
 		var distanceY = this.sprite.y-barnY;

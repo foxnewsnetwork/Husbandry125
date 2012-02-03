@@ -21,7 +21,7 @@ var AngryCamera = function(){
 		this.originY = y;
 	}
 	this.show = function(sprite, absX, absY, absZ){
-		mibbuSetSpritePosition( 
+		mibbuSetSpritePosition(
 			sprite,
 			absX - this.originX,
 			absY,

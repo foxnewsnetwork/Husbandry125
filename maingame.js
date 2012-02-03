@@ -63,8 +63,7 @@ function gameLoop(){
     {
         //Firstly just realign the mouse. Even if the mouse isn't moved,
         //Ammo should be pinned to mouse.
-       playerBarn.mouseSet();
-
+       playerBarn.ammo.mouseMove();
         //open up listeners
         document.addEventListener("mousemove", handleAmmoMove, true);
         document.addEventListener("mouseup", handleAmmoRelease, true);
@@ -106,12 +105,12 @@ function gameLoop(){
           if(entityA.notHit )
           {
               entityA.notHit = false;
-              entityB.wasHit();
+              //entityB.wasHit();
           }
           else if(entityB.notHit)
           {
               entityB.notHit = false;
-            entityA.wasHit();
+            //entityA.wasHit();
           }
 
         }
