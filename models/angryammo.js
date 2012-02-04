@@ -7,8 +7,8 @@ var AmmoDef = function( ){
 	this.fixDef.friction = 0.75;
 	this.fixDef.restitution = 0.2;
 	this.bodyDef.type = b2Body.b2_dynamicBody;
-	this.fixDef.shape = new b2CircleShape( AMMO_WIDTH / 2 * METER_PER_PIXEL );
-	//this.fixDef.shape.SetAsBox( AMMO_WIDTH * METER_PER_PIXEL, AMMO_HEIGHT * METER_PER_PIXEL );
+	this.fixDef.shape = new b2PolygonShape;
+	this.fixDef.shape.SetAsBox( 0.5 * AMMO_WIDTH * METER_PER_PIXEL, 0.5 * AMMO_HEIGHT * METER_PER_PIXEL );
 	
 	// game
 };
@@ -25,30 +25,107 @@ var AngryAmmo = function( world, player, ammoDef ){
 	this.absX;
 	this.absY;
 	this.absZ;
+	
+	this.sprite.width = AMMO_WIDTH;
+	this.sprite.height = AMMO_HEIGHT;
 
 	this.flying = false;
 	this.initialize = function(x,y) {
-		mibbuSetSpritePosition( this.sprite, x, y, Z_CHARACTERS-1);
+		mibbuSetSpritePosition( this.sprite, x, y, Z_CHARACTERS+1);
 		this.absX = x;
 		this.absY = y;
 		this.absZ = Z_CHARACTERS-1;
-		this.completeConflux();
-		this.sprite.speed(6);
+		this.conflux();
+		this.sprite.speed(0);
+	}
+	this.SetPosition = function(x,y){
+		this.absX = x;
+		this.absY = y;
+		mibbuSetSpritePosition( this.sprite, x, y, this.sprite.z );
+		this.conflux();
+	}
+	this.MovePosition = function(x,y){ 
+		this.absX += x;
+		this.absY += y;
+		mibbuMoveSpritePosition( this.sprite, x, y, 0 );
+		this.conflux();
 	}
 	this.move = function( direction ){
 		this.speed = direction * MOVE_SPEED;
-		//mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0);
+		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0);
 		this.absX += direction * MOVE_SPEED;
-		this.completeConflux();
+		this.conflux();
 	}
 	this.confluence = function(){
 		Confluence( this.body, this.sprite );
 	}
-	this.deltaconfluence = function(){
-		DeltaConfluence( this.body, this.sprite );
-	}
+	
 	this.conflux = function(){
 		Conflux( this.body, this.sprite );
+	}
+	
+	this.show = function(camera){
+		this.confluence();
+		if( this.speed < 1 ){
+			this.body.SetAngularVelocity(0);
+		}
+		//this.deltaconfluence();
+		camera.show(this.sprite);
+		this.speed = this.body.GetLinearVelocity().x * PIXEL_PER_METER;
+	}
+	this.SetVelocity = function(Vx,Vy){
+		this.speed = Vx;
+		this.body.ApplyImpulse(new b2Vec2(Vx, Vy), this.body.GetWorldCenter());
+		this.flying = true;
+		this.sprite.speed(6);
+		this.conflux;
+	}
+
+	
+	// Game mechanics macros
+//	this.fire = function( velocity ){
+//		this.speed = velocity.x * PIXEL_PER_METER;
+//		this.body.SetLinearVelocity( velocity )
+//	}
+
+    //Function the handles the firing of the ammo
+    
+	/****************************************
+	*****************************************
+	** Unused or not implemented functions **
+	*****************************************
+	*****************************************/
+		// Game world connection functions
+		this.fire = function(barnX,barnY) {
+        //Can use to check if fired. Maybe useful for camera actions
+        this.flying = true;
+		this.sprite.speed(6);
+        //Calculate angle and distance from origin. To be used when
+        //calculating firing velocity.
+        var distanceX = this.sprite.x-barnX;
+		var distanceY = this.sprite.y-barnY;
+     	var distance = Math.sqrt(distanceX*distanceX+distanceY*distanceY);
+        var birdAngle = Math.atan2(distanceY,distanceX);
+
+        //Horizontal force
+        var horizontalForce = -distance*Math.cos(birdAngle)/4;
+
+        //Verticle force
+        var verticalForce = -distance*Math.sin(birdAngle)/4;
+        //Create the force.
+        var vec = new b2Vec2(horizontalForce,verticalForce);
+
+        //Apply an impulse to the ammo.
+        this.body.ApplyImpulse(vec, this.body.GetWorldCenter());
+
+        //Handle conflux of ammo.
+        this.conflux();
+    }
+	this.draw = function( ) { 
+		// TODO: implement me!
+	}
+	this.destroy = function( ){
+		// TODO: implement me! (all I need to do is remove this object from the game)
 	}
 	this.completeConfluence = function() { 
 		CompleteConfluence( this );
@@ -76,54 +153,8 @@ var AngryAmmo = function( world, player, ammoDef ){
 			this.sprite.y=barnY+Math.sqrt(SHOT_RADIUS)*Math.sin(shotAngle);
 		}
     }
-	this.show = function(camera){
-		this.completeConfluence();
-		if( this.speed < 1 ){
-			this.body.SetAngularVelocity(0);
-		}
-		//this.deltaconfluence();
-		camera.show(this.sprite, this.absX, this.absY, this.absZ);
-		this.speed = this.body.GetLinearVelocity().x * PIXEL_PER_METER;
+	this.deltaconfluence = function(){
+		DeltaConfluence( this.body, this.sprite );
 	}
-	// Game world connection functions
-	this.draw = function( ) { 
-		// TODO: implement me!
-	}
-	this.destroy = function( ){
-		// TODO: implement me! (all I need to do is remove this object from the game)
-	}
-	
-	// Game mechanics macros
-//	this.fire = function( velocity ){
-//		this.speed = velocity.x * PIXEL_PER_METER;
-//		this.body.SetLinearVelocity( velocity )
-//	}
-
-    //Function the handles the firing of the ammo
-    this.fire = function(barnX,barnY) {
-        //Can use to check if fired. Maybe useful for camera actions
-        this.flying = true;
-
-        //Calculate angle and distance from origin. To be used when
-        //calculating firing velocity.
-        var distanceX = this.sprite.x-barnX;
-		var distanceY = this.sprite.y-barnY;
-     	var distance = Math.sqrt(distanceX*distanceX+distanceY*distanceY);
-        var birdAngle = Math.atan2(distanceY,distanceX);
-
-        //Horizontal force
-        var horizontalForce = -distance*Math.cos(birdAngle)/4;
-
-        //Verticle force
-        var verticalForce = -distance*Math.sin(birdAngle)/4;
-        //Create the force.
-        var vec = new b2Vec2(horizontalForce,verticalForce);
-
-        //Apply an impulse to the ammo.
-        this.body.ApplyImpulse(vec, this.body.GetWorldCenter());
-
-        //Handle conflux of ammo.
-        this.conflux();
-    }
 };
 

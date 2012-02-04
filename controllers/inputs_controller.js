@@ -5,21 +5,37 @@
 
 var mouseX;
 var mouseY;
-var mouseDown;
+var mouseDown = false;
+var mouseUp = true;
+var mouseStartX;
+var mouseStartY;
+var mouseEndX;
+var mouseEndY;
+
 function InitializeMouseController(){
 
 	$("canvas").mousemove( function(e){
 		mouseX = e.clientX;
 		mouseY = e.clientY;
-		$("#debug").html(mouseX + " " + mouseY);
+		//$("#debug").html(mouseX + " " + mouseY);
 	});
 	$("canvas").mousedown( function(e){
 		mouseDown = true;
+		if(mouseUp == true){
+			mouseStartX = mouseX + 0;
+			mouseStartY = mouseY + 0;
+		}
+		mouseUp = false;
+		mouseEndX = undefined;
+		mouseEndY = undefined;
 		$("#debug").html("down at: " + mouseX + " " + mouseY);
 	});
 	$("canvas").mouseup( function(e){
 		mouseDown = false;
-		$("#debug").html("up at: " + mouseX + " " + mouseY);
+		mouseUp = true;
+		mouseEndX = mouseX + 0;
+		mouseEndY = mouseY + 0;
+		$("#debug").html("vec x: " + (mouseStartX - mouseEndX) + " vec y: " + (mouseStartY - mouseEndY));
 	});
 };
 
@@ -36,19 +52,30 @@ function CheckWithinBounds( sprite, x, y ){
 
 
   //Trigger to see if mouse is being moved.
+	var startX;
+		var startY;
+		var mouseSetFlag = false;
+  
   function handleAmmoMove(e) {
       //Move the ammo
-          theBarn.ammo.mouseMove(theBarn.sprite.x + AMMO_WIDTH/2,theBarn.sprite.y-150);
+      //theBarn.ammo.mouseMove(theBarn.sprite.x + AMMO_WIDTH/2,theBarn.sprite.y-150);
+	  //theBarn.ammo.SetPosition( e.clientX, e.clientY );
+	  $("#debug").html( "vel x: " + e.clientX - startX + "vel y: " + e.clientY - startY );
    };
 
 
    //If the mouse is released. Fire it!
    function handleAmmoRelease(e) {
        //Remove listener so ammo isn't moved.
-       document.removeEventListener("mousemove", handleAmmoMove, true);
-
+       //document.removeEventListener("mousemove", handleAmmoMove, true);
+	   mouseEndX = mouseX + 0;
+		mouseEndY = mouseY + 0;
+	   
+	   var Vx = 4 * (mouseStartX - mouseEndX) * METER_PER_PIXEL;
+	   var Vy = 4 * (mouseStartY - mouseEndY) * METER_PER_PIXEL;
        //Fire the ammo.
-       theBarn.ammo.fire(theBarn.sprite.x + AMMO_WIDTH/2,theBarn.sprite.y-150);
+	   theBarn.ammo.SetVelocity(Vx, Vy);
+       //theBarn.ammo.fire(theBarn.sprite.x + AMMO_WIDTH/2,theBarn.sprite.y-150);
 
        //remove listener so we don't accidentally fire ammo again.
        document.removeEventListener("mouseup", handleAmmoRelease, true);

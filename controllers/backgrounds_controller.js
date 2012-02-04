@@ -8,12 +8,12 @@ var BackgroundController = function(){
 	this.sprite.speed(0);
 	mibbuSetSpritePosition( this.sprite, 0,0,1);
 	this.show = function(camera){
-		mibbuMoveSpritePosition( 
+		/*mibbuMoveSpritePosition( 
 			this.sprite, 
 			-camera.deltaX * Z_BACKGROUND / PARALLAX_CONSTANT,
 			0,
 			0
-		);
+		);*/
 		this.sprite.on();
 		if(this.flag){
 			for( j in this.doodads ){

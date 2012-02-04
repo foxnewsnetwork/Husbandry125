@@ -15,7 +15,7 @@ $(document).ready(function(){
 	theBarn.initialize(400, 300);
     theBarn2 = new AngryBarn( theWorld,thePlayer,barnDef);
     theBarn2.initialize(100,1);
-	theCamera.follow( theBarn.ammo );
+	//theCamera.follow( theBarn.ammo );
 	bgcontrol = new BackgroundController();
 	bgcontrol.camera = theCamera;
 	InitializeMouseController();
@@ -36,7 +36,7 @@ function gameLoop(){
 	theCamera.follow( theBarn.ammo );
 	bgcontrol.show(theCamera);
 	
-
+	var ammoFireFlag = false;
 	// Step 2: Handle input
 	if( CheckWithinBounds( leftButton, mouseX, mouseY ) ){
 		leftButton.frame(1);
@@ -46,23 +46,20 @@ function gameLoop(){
 		rightButton.frame(1);
 		theBarn.move(1);
 	}
-    else if (CheckWithinBounds(theBarn.ammo.sprite,mouseX,mouseY) && mouseDown)
+    else if (CheckWithinBounds(theBarn.sprite,mouseX,mouseY) && mouseDown)
     {
         //Firstly just realign the mouse. Even if the mouse isn't moved,
         //Ammo should be pinned to mouse.
-        theBarn.mouseSet();
-
+        // theBarn.mouseSet();
+		
         //open up listeners
-        document.addEventListener("mousemove", handleAmmoMove, true);
+       //document.addEventListener("mousemove", handleAmmoMove, true);
         document.addEventListener("mouseup", handleAmmoRelease, true);
-
-
-
-
     }
 	else {
 		leftButton.frame(0);
 		rightButton.frame(0);
+
 	}
 
 
