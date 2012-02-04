@@ -106,18 +106,22 @@ function gameLoop(){
         //Get the entities from the actors array
           var entityA = actors[idA];
           var entityB = actors[idB];
-
           //Find which entity is a projectile (the one that is looking to hit something)
           //Change that entity to being hit, and perform some function on the was hit entity.
           if(entityA.notHit )
           {
-              entityA.notHit = false;
-              //entityB.wasHit();
+              if(idB % 2 == 0 ){
+                  entityA.notHit = false;
+
+              entityB.wasHit();
+              }
           }
           else if(entityB.notHit)
           {
-              entityB.notHit = false;
-            //entityA.wasHit();
+              if(idA % 2 == 0 ){
+                  entityB.notHit = false;
+                entityA.wasHit();
+              }
           }
 
         }

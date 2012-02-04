@@ -79,6 +79,8 @@ function CheckWithinBounds( sprite, x, y ){
 	   playerBarn.ammo.SetVelocity(Vx, Vy);
        //theBarn.ammo.fire(theBarn.sprite.x + AMMO_WIDTH/2,theBarn.sprite.y-150);
         playerBarn.ammo.flying = true;
+       playerBarn.ammo.notHit = true;
+
        //remove listener so we don't accidentally fire ammo again.
        document.removeEventListener("mouseup", handleAmmoRelease, true);
 
