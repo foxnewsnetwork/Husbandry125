@@ -9,8 +9,9 @@ var BarnDef = function( ){
 	this.fixDef.restitution = .4;
 	this.bodyDef.type = b2Body.b2_dynamicBody;
 	this.fixDef.shape = new b2PolygonShape;
-	this.fixDef.shape.SetAsBox( (BARN_WIDTH - 10 )  * METER_PER_PIXEL, (BARN_HEIGHT - 10) * METER_PER_PIXEL  );
-	
+
+	this.fixDef.shape.SetAsBox( (0.5 * BARN_WIDTH )  * METER_PER_PIXEL, (0.5 * BARN_HEIGHT) * METER_PER_PIXEL  );
+
 	// game
 	this.maxspeed = 0.25;
 	this.maxhp = 100;
@@ -41,7 +42,11 @@ var AngryBarn = function(world, player, barnDef) {
 	
 	// animation
 	this.sprite = new Game.spr('views/pigbig.png', BARN_WIDTH, BARN_HEIGHT, 3, 0);
+	this.sprite.width = BARN_WIDTH;
+	this.sprite.height = BARN_HEIGHT;
 	this.cannonSprite = new Game.spr('views/cannon.png', CANNON_WIDTH, CANNON_HEIGHT, 1, 0);
+	this.cannonSprite.width = CANNON_WIDTH;
+	this.cannonSprite.height = CANNON_HEIGHT;
 	// Game world connection functions
 	this.initialize = function(x,y) { 
 		this.absX = x;
@@ -55,8 +60,61 @@ var AngryBarn = function(world, player, barnDef) {
 		this.cannonSprite.speed(0);
 		this.sprite.speed(7);
 		this.conflux();
-		this.ammo.initialize(x + BARN_WIDTH, y);
+		this.ammo.initialize(x, y - BARN_HEIGHT);
 	}
+	
+	// Game mechanics macros 
+	// Sets the physical body location  
+	// Call this function to set positions (be sure to use pixels)
+	this.SetPosition = function(x,y){
+		this.absX = x;
+		this.absY = y;
+		mibbuSetSpritePosition( this.sprite, x, y, this.sprite.z );
+		mibbuSetSpritePosition( this.cannonSprite, x+10, y-CANNON_HEIGHT, this.sprite.z );
+		this.conflux();
+	}
+	this.MovePosition = function(x,y){ 
+		this.absX += x;
+		this.absY += y;
+		mibbuMoveSpritePosition( this.sprite, x, y, 0 );
+		mibbuMoveSpritePosition( this.cannonSprite, x, y, 0 );
+		this.conflux();
+	}
+	this.move = function( direction ){
+		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0); 
+		mibbuMoveSpritePosition( this.cannonSprite, direction * MOVE_SPEED, 0, 0); 	
+		this.absX += direction * MOVE_SPEED;
+		//this.completeConflux();
+		this.conflux();
+		this.ammo.move(direction);
+	}
+    
+	this.confluence = function(){
+		Confluence( this.body, this.sprite );
+		Confluence( this.body, this.cannonSprite );
+		mibbuMoveSpritePosition( this.cannonSprite,10,-CANNON_HEIGHT,0);
+	}
+	this.conflux = function(){
+		Conflux( this.body, this.sprite );
+	}
+	this.show = function( camera ){
+		this.confluence();
+		camera.show(this.sprite);
+		camera.show(this.cannonSprite);
+		this.ammo.show(camera);
+	}
+	this.fire = function( velocity ){
+		this.ammo.fire( velocity );
+	}
+    this.wasHit = function(){
+        alert("OUCH I WAS HIT");
+
+    }
+	/****************************************
+	*****************************************
+	** Unused or not implemented functions **
+	*****************************************
+	*****************************************/
 	this.destroy = function( ){
 		// TODO: implement me! (all I need to do is remove this object from the game)
 	}
@@ -66,18 +124,6 @@ var AngryBarn = function(world, player, barnDef) {
 	this.load = function(world, player){
 		// TODO: implement me! ( I need to load from the db the player's vehicle )
 	}
-	// Game mechanics macros 
-	this.move = function( direction ){
-		//mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0); 
-		//mibbuMoveSpritePosition( this.cannonSprite, direction * MOVE_SPEED, 0, 0); 	
-		this.absX += direction * MOVE_SPEED;
-		this.completeConflux();
-		this.ammo.move(direction);
-	}
-    this.mouseSet = function(){
-      this.ammo.sprite.x = mouseX - AMMO_WIDTH/2;
-      this.ammo.sprite.y = mouseY - AMMO_HEIGHT/2;
-    }
 	this.deltaconfluence = function(){
 		DeltaConfluence( this.body, this.sprite );
 		DeltaConfluence( this.body, this.cannonSprite );
@@ -89,25 +135,12 @@ var AngryBarn = function(world, player, barnDef) {
 	this.completeConflux = function() { 
 		CompleteConflux( this ); 	
 	}
-	this.confluence = function(){
-		Confluence( this.body, this.sprite );
-		Confluence( this.body, this.cannonSprite );
-		mibbuMoveSpritePosition( this.cannonSprite,10,-CANNON_HEIGHT,0);
-	}
-	this.conflux = function(){
-		Conflux( this.body, this.sprite );
-	}
-	this.show = function( camera ){
-		this.completeConfluence();
-		camera.show(this.sprite, this.absX, this.absY, this.absZ);
-		camera.show(this.cannonSprite, this.absX, this.absY, this.absZ);
-		this.ammo.show(camera);
-	}
-	this.fire = function( velocity ){
-		this.ammo.fire( velocity );
-	}
-    this.wasHit = function(){
-        alert("OUCH I WAS HIT");
+	// In all honesty, I feel the models shouldn't have to worry about the mouse
+	this.mouseSet = function(){
+		this.SetPosition( 
+			mouseX - AMMO_WIDTH/2,
+			mouseY - AMMO_HEIGHT/2
+		);
     }
 };
 

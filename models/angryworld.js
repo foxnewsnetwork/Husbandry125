@@ -7,7 +7,7 @@ var AngryWorld = function( ){
 	 );
 	 this.bodyDef = new b2BodyDef;
 	 this.bodyDef.type = b2Body.b2_staticBody;
-	 this.bodyDef.position.Set(30,20);
+	 this.bodyDef.position.Set(30,17);
 	 
 	 this.fixDef = new b2FixtureDef;
 	 this.fixDef.density = 1.0;

@@ -31,15 +31,9 @@ var AngryCamera = function(){
 		this.originX = x;
 		this.originY = y;
 	}
-	this.show = function(sprite, absX, absY, absZ){
-		mibbuSetSpritePosition(
-			sprite,
-			absX - this.originX,
-			absY,
-			sprite.z
-		);
-		// The idea is that, whatever is being followed, takes a constant 
-		$("#debug").html("cameraX: " + this.deltaX + "cameraY: " + this.deltaY);
+
+	this.show = function(sprite){
+		
 	}
 	
 }

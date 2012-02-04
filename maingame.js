@@ -31,6 +31,7 @@ $(document).ready(function(){
      //right now define the first barn to be the one we focus on.
      playerBarn = actors[0];
 	theCamera.follow( playerBarn.ammo );
+
 	bgcontrol = new BackgroundController();
 	bgcontrol.camera = theCamera;
 	InitializeMouseController();
@@ -49,7 +50,7 @@ function gameLoop(){
 	theCamera.follow( playerBarn.ammo );
 	bgcontrol.show(theCamera);
 	
-
+	var ammoFireFlag = false;
 	// Step 2: Handle input
 	if( CheckWithinBounds( leftButton, mouseX, mouseY ) ){
 		leftButton.frame(1);
@@ -59,26 +60,32 @@ function gameLoop(){
 		rightButton.frame(1);
 		playerBarn.move(1);
 	}
-    else if (CheckWithinBounds(playerBarn.ammo.sprite,mouseX,mouseY) && mouseDown)
+
+    else if (CheckWithinBounds(playerBarn.sprite,mouseX,mouseY) && mouseDown)
     {
         //Firstly just realign the mouse. Even if the mouse isn't moved,
         //Ammo should be pinned to mouse.
-       playerBarn.ammo.mouseMove();
+        // theBarn.mouseSet();
+		
         //open up listeners
-        document.addEventListener("mousemove", handleAmmoMove, true);
+       //document.addEventListener("mousemove", handleAmmoMove, true);
         document.addEventListener("mouseup", handleAmmoRelease, true);
 
     }
 	else {
 		leftButton.frame(0);
 		rightButton.frame(0);
+
 	}
 
      if (playerBarn.ammo.flying )
      {
          var vec = new b2Vec2(0,0);
-         if(playerBarn.ammo.body.GetLinearVelocity().x == 0)
+         //$("#debug").html( "velocity y : " + playerBarn.ammo.body.GetLinearVelocity().y );
+
+         if(playerBarn.ammo.body.GetLinearVelocity().x == 0 )
          {
+
              playerBarn.ammo.reset(playerBarn.sprite.x,playerBarn.sprite.y);
          }
 

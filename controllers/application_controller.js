@@ -26,8 +26,8 @@ function CompleteConflux( angrymodel ){
 function Confluence( physical, sprite ){ 
 	mibbuSetSpritePosition( 
 		sprite, 
-		physical.GetPosition().x * PIXEL_PER_METER, 
-		physical.GetPosition().y * PIXEL_PER_METER,
+		physical.GetPosition().x * PIXEL_PER_METER - sprite.width / 2, 
+		physical.GetPosition().y * PIXEL_PER_METER - sprite.height / 2,
 		sprite.z
 	);
 }
@@ -48,8 +48,8 @@ function Conflux( physical, sprite ){
 
 	physical.SetPosition( 
 		new b2Vec2( 
-			(sprite.x)* METER_PER_PIXEL,
-			(sprite.y)* METER_PER_PIXEL
+			(sprite.x + sprite.width / 2)* METER_PER_PIXEL,
+			(sprite.y + sprite.height / 2)* METER_PER_PIXEL
 		) 
 	);
 }
