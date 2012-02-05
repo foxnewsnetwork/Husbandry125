@@ -30,6 +30,12 @@ $(document).ready(function(){
 
      //right now define the first barn to be the one we focus on.
      playerBarn = actors[0];
+     
+     // Testing rotation of a barn
+     // Uncommented the following line to contract cancer
+     // mibbuRotateSprite(theBarn.sprite, 0.15);
+     
+     
 	theCamera.follow( playerBarn.ammo );
 
 	bgcontrol = new BackgroundController();

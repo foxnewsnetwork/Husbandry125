@@ -293,6 +293,14 @@ var mibbu = function(Cwidth, Cheight, _parent){
         var draw = MB_usingCanvas ? function(){
                 //draw canvas
                 try {
+                    /***************************
+                    * Custom Rotation Section     *
+                    ***************************/
+                    	MB_mainContext.rotate( t.onceAngle );
+                    	t.onceAngle = 0;
+                    /***************************
+                    * End Custom Section               *
+                    ***************************/
                     MB_mainContext.i(t.image, 
                                     t.iWidth * t.animation, 
                                     t.iHeight * t.f, 
@@ -308,7 +316,7 @@ var mibbu = function(Cwidth, Cheight, _parent){
                     }
             } : MB_usingCSSAnimations ? function(){ /*css animations*/ } : function(){
             //draw DOM
-                t.si.top = t.height * t.f*-1+'px';
+         	       t.si.top = t.height * t.f*-1+'px';
                 t.si.left = t.width * t.animation*-1+'px';
             },
             t = {},
@@ -332,6 +340,15 @@ var mibbu = function(Cwidth, Cheight, _parent){
         t.image = new Image();
         t.image.src = _image;
     
+    	/***************************
+    	* Custom Variable Section        *
+    	****************************/
+    	t.angle = 0;
+    	t.onceAngle = 0;
+    	/***************************
+    	* End Custom Section              *
+    	****************************/    	
+    	
         t.speed = 1;
         t.width =  _width;
         t.iWidth = _width;
@@ -402,7 +419,23 @@ var mibbu = function(Cwidth, Cheight, _parent){
 
         t.id = MB_elements.push(t)-1;
         MB_fixedIndexColl.push(t); //for collisions, temporary
-                
+        
+        /************************
+        * Custom Function Section *
+        ************************/
+        var setAngle = function(angle){ 
+        	if( angle !== undefined ){ 
+        		t.angle = angle || t.angle;
+        		t.onceAngle = angle || t.onceAngle;
+        		return this;
+        	}
+        	else { 
+        		return t.angle;
+        	}
+        };
+        /************************
+        * End Custom Section         *
+        ************************/                
         var setPosition = function(x, y, z) {
             //there is at least one argument,
             //set position and return 'this' for chaining
@@ -513,6 +546,13 @@ var mibbu = function(Cwidth, Cheight, _parent){
         };
         
         return {
+        	/*************************
+        	* Custom Return Section     *
+        	*************************/
+        	'rotate':setAngle,
+        	/*************************
+        	* End Custom Section           *
+        	*************************/        	
             'position':setPosition,
             'hit':onHit,
             'zone': function(top, right, bottom, left) {
@@ -572,7 +612,6 @@ var mibbu = function(Cwidth, Cheight, _parent){
                 
                 return this;
             },
-            
             'size':reSize,
             'speed':function(e) { 
                 if (e !== undefined) { 
