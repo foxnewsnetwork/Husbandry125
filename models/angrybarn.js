@@ -48,7 +48,7 @@ var AngryBarn = function(world, player, barnDef) {
 	this.cannonSprite.width = CANNON_WIDTH;
 	this.cannonSprite.height = CANNON_HEIGHT;
 	// Game world connection functions
-	this.initialize = function(x,y) { 
+	this.initialize = function(x,y) {
 		this.absX = x;
 		this.absY = y;
 		this.cannonSprite.absX = x + 10;
@@ -137,10 +137,9 @@ var AngryBarn = function(world, player, barnDef) {
 	}
 	// In all honesty, I feel the models shouldn't have to worry about the mouse
 	this.mouseSet = function(){
-		this.SetPosition( 
-			mouseX - AMMO_WIDTH/2,
-			mouseY - AMMO_HEIGHT/2
-		);
+		mibbuSetSpritePosition(this.ammo.sprite,mouseX,mouseY,0);
+
+
     }
 };
 

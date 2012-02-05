@@ -51,11 +51,13 @@ var AngryAmmo = function( world, player, ammoDef ){
 		this.absY += y;
 		mibbuMoveSpritePosition( this.sprite, x, y, 0 );
 		this.conflux();
+
 	}
     this.reset = function(x,y) {
       mibbuSetSpritePosition( this.sprite, x , y -20, 0);
 		this.conflux();
         this.flying = false;
+
     }
 	this.move = function( direction ){
 		this.speed = direction * MOVE_SPEED;
@@ -116,10 +118,10 @@ var AngryAmmo = function( world, player, ammoDef ){
         var birdAngle = Math.atan2(distanceY,distanceX);
 
         //Horizontal force
-        var horizontalForce = -distance*Math.cos(birdAngle)/2;
+        var horizontalForce = distance*Math.cos(birdAngle)/10;
 
         //Verticle force
-        var verticalForce = -distance*Math.sin(birdAngle)/2;
+        var verticalForce = distance*Math.sin(birdAngle)/10;
         //Create the force.
         var vec = new b2Vec2(horizontalForce,verticalForce);
 
@@ -147,22 +149,27 @@ var AngryAmmo = function( world, player, ammoDef ){
     //Calculate mouse movement
     this.mouseMove = function(barnX, barnY) {
         //Have the actual ammo move with the mouse.
-        this.sprite.x = mouseX - AMMO_WIDTH/2 ;
-        this.sprite.y = mouseY - AMMO_HEIGHT/2 ;
+//        this.sprite.x = mouseX - AMMO_WIDTH/2 ;
+//        this.sprite.y = mouseY - AMMO_HEIGHT/2 ;
+        //mibbuSetSpritePosition( this.sprite,mouseX,mouseY, 0);
+        $("#debug").html( "mousex: " + mouseX );
 
         //Calculate distance of sprite from starting point.
         var distanceX = this.sprite.x-barnX;
 		var distanceY = this.sprite.y-barnY;
+        this.conflux();
 
         //Check to see if ammo is dragged too far.
 		if (distanceX*distanceX+distanceY*distanceY>SHOT_RADIUS) {
 			//Calculate angle of fire.
+            alert("HI");
             var shotAngle=Math.atan2(distanceY,distanceX);
-
             //Keep sprite from moving farther than designated radius.
-            this.sprite.x=barnX+Math.sqrt(SHOT_RADIUS)*Math.cos(shotAngle);
-			this.sprite.y=barnY+Math.sqrt(SHOT_RADIUS)*Math.sin(shotAngle);
+            xcord=barnX+Math.sqrt(SHOT_RADIUS)*Math.cos(shotAngle);
+			ycord=barnY+Math.sqrt(SHOT_RADIUS)*Math.sin(shotAngle);
+            //mibbutSetSpritePosition(this.sprite,xcord,ycord,0);
 		}
+
     }
 	this.deltaconfluence = function(){
 		DeltaConfluence( this.body, this.sprite );

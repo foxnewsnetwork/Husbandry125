@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f579119a-bef9-477b-abe3-28630f0d52a1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/constants.js" afterPath="$PROJECT_DIR$/constants.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/inputs_controller.js" afterPath="$PROJECT_DIR$/controllers/inputs_controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/maingame.js" afterPath="$PROJECT_DIR$/maingame.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/angryammo.js" afterPath="$PROJECT_DIR$/models/angryammo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/angrybarn.js" afterPath="$PROJECT_DIR$/models/angrybarn.js" />
     </list>
     <ignored path="game.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,19 +30,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="inputs_controller.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="inputs_controller.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/inputs_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="12" selection-start="2213" selection-end="2213" vertical-scroll-proportion="0.0">
+            <state line="118" column="59" selection-start="3990" selection-end="3990" vertical-scroll-proportion="0.5387524">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="maingame.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="maingame.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/maingame.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="120" column="26" selection-start="3568" selection-end="3568" vertical-scroll-proportion="0.76559544">
+            <state line="15" column="23" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -47,7 +51,7 @@
       <file leaf-file-name="angryammo.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/angryammo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="131" column="20" selection-start="3756" selection-end="3784" vertical-scroll-proportion="0.0">
+            <state line="56" column="44" selection-start="1491" selection-end="1491" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -56,7 +60,16 @@
       <file leaf-file-name="angrybarn.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/angrybarn.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="108" column="4" selection-start="3254" selection-end="3319" vertical-scroll-proportion="0.0">
+            <state line="39" column="21" selection-start="1097" selection-end="1097" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="constants.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/constants.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="4" selection-start="650" selection-end="650" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -84,14 +97,14 @@
         <option value="$PROJECT_DIR$/controllers/application_controller.js" />
         <option value="$PROJECT_DIR$/models/angryworld.js" />
         <option value="$PROJECT_DIR$/models/angryplayer.js" />
-        <option value="$PROJECT_DIR$/constants.js" />
         <option value="$PROJECT_DIR$/client.html" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/models/angrycamera.js" />
         <option value="$PROJECT_DIR$/models/angrybarn.js" />
         <option value="$PROJECT_DIR$/models/angryammo.js" />
-        <option value="$PROJECT_DIR$/controllers/inputs_controller.js" />
+        <option value="$PROJECT_DIR$/constants.js" />
         <option value="$PROJECT_DIR$/maingame.js" />
+        <option value="$PROJECT_DIR$/controllers/inputs_controller.js" />
       </list>
     </option>
   </component>
@@ -149,7 +162,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -305,13 +318,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/extensions_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/chat-example/helloworld.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="711" vertical-scroll-proportion="-0.0">
@@ -375,37 +381,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/constants.js">
+    <entry file="file://$PROJECT_DIR$/controllers/extensions_controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="20" selection-start="732" selection-end="732" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/inputs_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="12" selection-start="2213" selection-end="2213" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/angrybarn.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="4" selection-start="3254" selection-end="3319" vertical-scroll-proportion="0.0">
+        <state line="39" column="21" selection-start="1097" selection-end="1097" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/angryammo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="20" selection-start="3756" selection-end="3784" vertical-scroll-proportion="0.0">
+        <state line="56" column="44" selection-start="1491" selection-end="1491" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="4" selection-start="650" selection-end="650" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/maingame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="26" selection-start="3568" selection-end="3568" vertical-scroll-proportion="0.76559544">
+        <state line="15" column="23" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/inputs_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="118" column="59" selection-start="3990" selection-end="3990" vertical-scroll-proportion="0.5387524">
           <folding />
         </state>
       </provider>
