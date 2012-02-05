@@ -15,6 +15,12 @@ function mibbuMoveSpritePosition( sprite, dx, dy, dz){
 	);
 }
 
+// This function rotates the entire canvas, so unless you really need to call it, don't use it
+function mibbuRotateSprite( sprite, angle ){
+	sprite.angle = angle;
+	sprite.rotate(angle);
+}
+
 function box2dMoveObject( body, dx, dy ){
 	
 }
