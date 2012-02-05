@@ -3,18 +3,20 @@ var AmmoDef = function( ){
 	// physics
 	this.bodyDef = new b2BodyDef;
 	this.fixDef = new b2FixtureDef;
-	this.fixDef.density = 2.0;
-	this.fixDef.friction = 0.75;
+	this.fixDef.density = 1.0;
+	this.fixDef.friction = 1.2;
 	this.fixDef.restitution = 0.2;
 	this.bodyDef.type = b2Body.b2_dynamicBody;
+
 	this.fixDef.shape = new b2PolygonShape;
 	this.fixDef.shape.SetAsBox( 0.5 * AMMO_WIDTH * METER_PER_PIXEL, 0.5 * AMMO_HEIGHT * METER_PER_PIXEL );
-	
+
 	// game
 };
 
 var AngryAmmo = function( world, player, ammoDef ){
 	// Creating physics components
+    ammoDef.bodyDef.userData = 2 * player.id + 1;
 	this.body = world.world.CreateBody( ammoDef.bodyDef );
 	this.body.CreateFixture( ammoDef.fixDef );
 	
@@ -50,6 +52,11 @@ var AngryAmmo = function( world, player, ammoDef ){
 		mibbuMoveSpritePosition( this.sprite, x, y, 0 );
 		this.conflux();
 	}
+    this.reset = function(x,y) {
+      mibbuSetSpritePosition( this.sprite, x , y -20, 0);
+		this.conflux();
+        this.flying = false;
+    }
 	this.move = function( direction ){
 		this.speed = direction * MOVE_SPEED;
 		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0);
@@ -63,7 +70,7 @@ var AngryAmmo = function( world, player, ammoDef ){
 	this.conflux = function(){
 		Conflux( this.body, this.sprite );
 	}
-	
+
 	this.show = function(camera){
 		this.confluence();
 		if( this.speed < 1 ){
@@ -98,6 +105,7 @@ var AngryAmmo = function( world, player, ammoDef ){
 		// Game world connection functions
 		this.fire = function(barnX,barnY) {
         //Can use to check if fired. Maybe useful for camera actions
+
         this.flying = true;
 		this.sprite.speed(6);
         //Calculate angle and distance from origin. To be used when
@@ -108,10 +116,10 @@ var AngryAmmo = function( world, player, ammoDef ){
         var birdAngle = Math.atan2(distanceY,distanceX);
 
         //Horizontal force
-        var horizontalForce = -distance*Math.cos(birdAngle)/4;
+        var horizontalForce = -distance*Math.cos(birdAngle)/2;
 
         //Verticle force
-        var verticalForce = -distance*Math.sin(birdAngle)/4;
+        var verticalForce = -distance*Math.sin(birdAngle)/2;
         //Create the force.
         var vec = new b2Vec2(horizontalForce,verticalForce);
 
@@ -120,6 +128,9 @@ var AngryAmmo = function( world, player, ammoDef ){
 
         //Handle conflux of ammo.
         this.conflux();
+        this.flying = true;
+        this.notHit = true;
+
     }
 	this.draw = function( ) { 
 		// TODO: implement me!

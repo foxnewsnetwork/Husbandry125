@@ -58,6 +58,7 @@ function CheckWithinBounds( sprite, x, y ){
   
   function handleAmmoMove(e) {
       //Move the ammo
+          playerBarn.ammo.mouseMove(playerBarn.sprite.x + AMMO_WIDTH/2,playerBarn.sprite.y-150);
       //theBarn.ammo.mouseMove(theBarn.sprite.x + AMMO_WIDTH/2,theBarn.sprite.y-150);
 	  //theBarn.ammo.SetPosition( e.clientX, e.clientY );
 	  $("#debug").html( "vel x: " + e.clientX - startX + "vel y: " + e.clientY - startY );
@@ -74,8 +75,11 @@ function CheckWithinBounds( sprite, x, y ){
 	   var Vx = 4 * (mouseStartX - mouseEndX) * METER_PER_PIXEL;
 	   var Vy = 4 * (mouseStartY - mouseEndY) * METER_PER_PIXEL;
        //Fire the ammo.
-	   theBarn.ammo.SetVelocity(Vx, Vy);
+//       playerBarn.ammo.fire(playerBarn.sprite.x + AMMO_WIDTH/2,playerBarn.sprite.y-150);
+	   playerBarn.ammo.SetVelocity(Vx, Vy);
        //theBarn.ammo.fire(theBarn.sprite.x + AMMO_WIDTH/2,theBarn.sprite.y-150);
+        playerBarn.ammo.flying = true;
+       playerBarn.ammo.notHit = true;
 
        //remove listener so we don't accidentally fire ammo again.
        document.removeEventListener("mouseup", handleAmmoRelease, true);

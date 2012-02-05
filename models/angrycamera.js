@@ -31,6 +31,7 @@ var AngryCamera = function(){
 		this.originX = x;
 		this.originY = y;
 	}
+
 	this.show = function(sprite){
 		
 	}
