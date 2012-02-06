@@ -60,7 +60,7 @@ var AngryBarn = function(world, player, barnDef) {
 		this.cannonSprite.speed(0);
 		this.sprite.speed(7);
 		this.conflux();
-		this.ammo.initialize(x, y - BARN_HEIGHT);
+		this.ammo.initialize(x+30, y - BARN_HEIGHT);
 	}
 	
 	// Game mechanics macros 
@@ -81,12 +81,22 @@ var AngryBarn = function(world, player, barnDef) {
 		this.conflux();
 	}
 	this.move = function( direction ){
-		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0); 
-		mibbuMoveSpritePosition( this.cannonSprite, direction * MOVE_SPEED, 0, 0); 	
-		this.absX += direction * MOVE_SPEED;
+//		mibbuMoveSpritePosition( this.sprite, direction * MOVE_SPEED, 0, 0);
+//		mibbuMoveSpritePosition( this.cannonSprite, direction * MOVE_SPEED, 0, 0);
+//		this.absX += direction * MOVE_SPEED;
+        if(this.body.GetLinearVelocity().y == 0)
+        {
+            this.body.ApplyForce(new b2Vec2(0,.5),this.body.GetWorldCenter());
+            this.ammo.body.ApplyForce(new b2Vec2(0,.5),this.ammo.body.GetWorldCenter());
+        }
+        var speed = new b2Vec2(direction * MOVE_SPEED,0);
+        this.body.SetLinearVelocity(speed);
+        $("#debug").html("vec x: " + this.body.GetLinearVelocity().x);
+
 		//this.completeConflux();
-		this.conflux();
-		this.ammo.move(direction);
+		this.ammo.body.SetLinearVelocity(speed);
+        this.conflux();
+        this.ammo.conflux();
 	}
     
 	this.confluence = function(){

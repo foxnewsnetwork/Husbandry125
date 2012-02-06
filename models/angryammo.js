@@ -33,7 +33,7 @@ var AngryAmmo = function( world, player, ammoDef ){
 
 	this.flying = false;
 	this.initialize = function(x,y) {
-		mibbuSetSpritePosition( this.sprite, x, y, Z_CHARACTERS+1);
+		mibbuSetSpritePosition( this.sprite, x, y, Z_CHARACTERS-1);
 		this.absX = x;
 		this.absY = y;
 		this.absZ = Z_CHARACTERS-1;
@@ -54,7 +54,8 @@ var AngryAmmo = function( world, player, ammoDef ){
 
 	}
     this.reset = function(x,y) {
-      mibbuSetSpritePosition( this.sprite, x , y -20, 0);
+      mibbuSetSpritePosition( this.sprite, x + 10 , y -20, 0);
+        this.body.ApplyForce(new b2Vec2(0,.5),this.body.GetWorldCenter());
 		this.conflux();
         this.flying = false;
 

@@ -58,6 +58,7 @@ function gameLoop(){
     {
         actors[i*2].show(theCamera)
     }
+    $("#debug").html("vec x: " + playerBarn.body.GetLinearVelocity().y);
 
 	theCamera.follow( playerBarn.ammo );
 	bgcontrol.show(theCamera);
@@ -73,7 +74,7 @@ function gameLoop(){
 		playerBarn.move(1);
 	}
 
-    else if (CheckWithinBounds(playerBarn.cannonSprite,mouseX,mouseY) && mouseDown)
+    else if (CheckWithinBounds(playerBarn.cannonSprite,mouseX,mouseY) && mouseDown && !playerBarn.ammo.flying)
     {
         //Firstly just realign the mouse. Even if the mouse isn't moved,
         //Ammo should be pinned to mouse.
@@ -97,7 +98,7 @@ function gameLoop(){
 
          if(playerBarn.ammo.body.GetLinearVelocity().x == 0 )
          {
-             playerBarn.ammo.reset(playerBarn.sprite.x,playerBarn.sprite.y);
+             playerBarn.ammo.reset(playerBarn.cannonSprite.x,playerBarn.cannonSprite.y);
          }
 
      }
