@@ -121,7 +121,7 @@ function gameLoop(){
           //Change that entity to being hit, and perform some function on the was hit entity.
           if(entityA.notHit )
           {
-              if(idB % 2 == 0 ){
+              if(idB % 2 == 0 && (idA - 1) != idB){
                   entityA.notHit = false;
 
               entityB.wasHit();
@@ -129,7 +129,7 @@ function gameLoop(){
           }
           else if(entityB.notHit)
           {
-              if(idA % 2 == 0 ){
+              if(idA % 2 == 0  && (idB - 1) != idA){
                   entityB.notHit = false;
                 entityA.wasHit();
               }
