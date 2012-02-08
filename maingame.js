@@ -11,6 +11,7 @@ $(document).ready(function(){
 
     theCamera = new AngryCamera();
 	theWorld = new AngryWorld();
+	theWorld.initialize();
 	theLand = theWorld.ground;
     crosshair = new Game.spr('views/crosshair.png', CROSSHAIR_WIDTH, CROSSHAIR_HEIGHT, 1, 0);
     crosshair.speed(0);
