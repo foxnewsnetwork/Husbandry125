@@ -5,7 +5,7 @@ var BarnDef = function( ){
 	this.fixDef = new b2FixtureDef;
 
 	this.fixDef.density = 0.1;
-	this.fixDef.friction = 0.50;
+	this.fixDef.friction = 0.10;
 	this.fixDef.restitution = .4;
 	this.bodyDef.type = b2Body.b2_dynamicBody;
 	this.fixDef.shape = new b2PolygonShape;
@@ -102,17 +102,19 @@ var AngryBarn = function(world, player, barnDef) {
 		// We manage the issue with the pigs facing direction here
 		this.switchDirection( this.direction != direction );
 		this.direction = direction;
+        $("#debug").html("vec x: " + this.body.GetLinearVelocity().x + "veloc y: " + this.body.GetLinearVelocity().y);
+
         if(this.body.GetLinearVelocity().y == 0)
         {
-            this.body.ApplyForce(new b2Vec2(0,.5),this.body.GetWorldCenter());
-            this.ammo.body.ApplyForce(new b2Vec2(0,.5),this.ammo.body.GetWorldCenter());
+            this.body.ApplyForce(new b2Vec2(0,0),this.body.GetWorldCenter());
+           // this.ammo.body.ApplyForce(new b2Vec2(0,.01),this.ammo.body.GetWorldCenter());
+
         }
         var speed = new b2Vec2(direction * MOVE_SPEED,0);
-        this.body.SetLinearVelocity(speed);
-        $("#debug").html("vec x: " + this.body.GetLinearVelocity().x);
-
 		//this.completeConflux();
 		this.ammo.body.SetLinearVelocity(speed);
+        this.body.SetLinearVelocity(speed);
+
         this.conflux();
         this.ammo.conflux();
 	}

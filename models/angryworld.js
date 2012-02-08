@@ -26,7 +26,7 @@ var AngryWorld = function( ){
 	 this.bodyDef.position.Set(0, ( WALL_HEIGHT / 2  - LAND_HEIGHT )* METER_PER_PIXEL );
 	 this.fixDef.friction = 0;
 	 // RESTITUTION TURNED UP FOR THE LULZ, TURN IT DOWN IN ACTUAL GAME
-	 this.fixDef.restitution = 2.5;
+	 this.fixDef.restitution = 1;
 	 this.fixDef.shape.SetAsBox( WALL_WIDTH / 2 * METER_PER_PIXEL, WALL_HEIGHT / 2 * METER_PER_PIXEL );
 	 this.leftWall = this.world.CreateBody(this.bodyDef);
 	 this.leftWall.CreateFixture(this.fixDef);

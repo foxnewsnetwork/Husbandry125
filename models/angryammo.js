@@ -4,7 +4,7 @@ var AmmoDef = function( ){
 	this.bodyDef = new b2BodyDef;
 	this.fixDef = new b2FixtureDef;
 	this.fixDef.density = 1.0;
-	this.fixDef.friction = 1.2;
+	this.fixDef.friction = .5;
 	this.fixDef.restitution = 0.2;
 	this.bodyDef.type = b2Body.b2_dynamicBody;
 
@@ -54,7 +54,7 @@ var AngryAmmo = function( world, player, ammoDef ){
 
 	}
     this.reset = function(x,y) {
-      mibbuSetSpritePosition( this.sprite, x + 10 , y -20, 0);
+      mibbuSetSpritePosition( this.sprite, x , y -20, 0);
         this.body.ApplyForce(new b2Vec2(0,.5),this.body.GetWorldCenter());
 		this.conflux();
         this.flying = false;
