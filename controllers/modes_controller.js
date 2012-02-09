@@ -1,17 +1,27 @@
 // Game controller for use in the maingame.js file
 
-var gameMode = MODE_MENU;
-
-function InitializeMenuMode(){
-
-}
+var gameMode;
 
 var mousecontrol, bgcontrol;
 var theWorld, thePlayer, theLand, theBarn, theCamera;
 var actors, playerBarn;
 var crosshair;
 
+var theMenu;
+function InitializeMenuMode(){
+	gameMode = MODE_MENU;
+	theCamera = new AngryCamera();
+	theMenu = new AngryMenu();
+	theMenu.initialize();
+	bgcontrol = new BackgroundController();
+	bgcontrol.camera = theCamera;
+
+}
+
+
+
 function InitializeGameMode(){
+	gameMode = MODE_GAME;
 	actors = {};
 
     theCamera = new AngryCamera();
@@ -50,11 +60,50 @@ function InitializeGameMode(){
 
 	bgcontrol = new BackgroundController();
 	bgcontrol.camera = theCamera;
-	InitializeMouseController();
+	
 }
 
 function LoopMenuMode(){
-
+	if( gameMode == MODE_MENU ){
+		if(theMenu.activeMenu == MENU_TITLE){
+			if( CheckWithinBounds( theMenu.title, mouseX, mouseY ) ){ 
+				theMenu.displayMainMenu();
+			}
+		}
+		if(theMenu.activeMenu == MENU_MAIN){
+			if( CheckWithinBounds( theMenu.join, mouseX, mouseY ) ){ 
+				theMenu.join.frame(1);
+				if( mouseDown ){
+					gameMode = MODE_GAME;
+					DestroyMenuMode();
+					InitializeGameMode();
+					return;
+				}
+			}
+			else if( CheckWithinBounds( theMenu.signin, mouseX, mouseY ) ){ 
+				theMenu.signin.frame(1);
+			}
+			else if( CheckWithinBounds( theMenu.shop, mouseX, mouseY ) ){ 
+				theMenu.shop.frame(1);
+				if( mouseDown ){ 
+					theMenu.displayShopMenu();
+				}
+			}
+			else{
+				theMenu.join.frame(0);
+				theMenu.shop.frame(0);
+				theMenu.signin.frame(0);
+			}
+		}
+		if(theMenu.activeMenu == MENU_SHOP){ 
+			if( CheckWithinBounds( leftButton, mouseX, mouseY ) ){ 
+				if( mouseDown ){
+					theMenu.displayMainMenu();
+					return;
+				}
+			}
+		}
+	}
 }
 
 function LoopGameMode(){
@@ -162,7 +211,8 @@ function LoopGameMode(){
 }
 
 function DestroyMenuMode(){
-
+	theMenu.killEverything();
+	delete theMenu;
 }
 
 function DestroyGameMode(){

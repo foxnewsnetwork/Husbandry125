@@ -4,11 +4,19 @@
 // This is the final thing to be called and merely starts the game
 
 $(document).ready(function(){
-	InitializeGameMode();
+	// InitializeGameMode();
+	InitializeMouseController();
+	InitializeMenuMode();
 });
 
 function gameLoop(){	
-	LoopGameMode();
+	// LoopGameMode();
+	if( gameMode == MODE_MENU ){
+		LoopMenuMode();
+	}
+	else if( gameMode == MODE_GAME ){
+		LoopGameMode();
+	}
 } 
 
 Game.on();
