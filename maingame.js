@@ -27,7 +27,7 @@ $(document).ready(function(){
         thePlayer = new AngryPlayer( i,new PlayerDef() );
 
 	    theBarn = new AngryBarn( theWorld, thePlayer, barnDef );
-	    theBarn.initialize(300 * i, 300);
+	    theBarn.initialize(300 * i, 500);
         actors[2*i] = theBarn;
         actors[2*i+1] = theBarn.ammo;
     }
@@ -75,7 +75,7 @@ function gameLoop(){
 		playerBarn.move(1);
 	}
 
-    else if (CheckWithinBounds(playerBarn.cannonSprite,mouseX,mouseY) && mouseDown)
+    else if (CheckWithinBounds(playerBarn.cannonSprite,mouseX,mouseY) && mouseDown && !playerBarn.ammo.flying)
     {
         //Firstly just realign the mouse. Even if the mouse isn't moved,
         //Ammo should be pinned to mouse.
@@ -86,7 +86,7 @@ function gameLoop(){
         document.addEventListener("mouseup", handleAmmoRelease, true);
 
     }
-    else if (CheckWithinBounds(playerBarn.sprite,mouseX,mouseY) && mouseDown)
+    else if (CheckWithinBounds(playerBarn.sprite,mouseX,mouseY) && mouseDown && !playerBarn.ammo.flying)
     {
         //Firstly just realign the mouse. Even if the mouse isn't moved,
         //Ammo should be pinned to mouse.
