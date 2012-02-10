@@ -2,7 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f579119a-bef9-477b-abe3-28630f0d52a1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/backlay.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/gamebutton.psd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/gametitle.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/gametitle.psd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/gametitlefaded.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/joinbutton.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/product1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/product2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/product3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/products.psd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/shopbutton.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/shopicon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/shopicon.psd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/signinbutton.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/modes_controller.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/angrymenu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/backlay.psd" afterPath="$PROJECT_DIR$/views/backlay.psd" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/constants.js" afterPath="$PROJECT_DIR$/constants.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game.html" afterPath="$PROJECT_DIR$/game.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/maingame.js" afterPath="$PROJECT_DIR$/maingame.js" />
     </list>
     <ignored path="game.iws" />
@@ -35,10 +53,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="maingame.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="maingame.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/maingame.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="77" selection-start="2765" selection-end="2765" vertical-scroll-proportion="0.51039696">
+            <state line="20" column="0" selection-start="431" selection-end="431" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modes_controller.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controllers/modes_controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="143" column="77" selection-start="3883" selection-end="3883" vertical-scroll-proportion="0.55992144">
               <folding />
             </state>
           </provider>
@@ -74,7 +101,7 @@
       <file leaf-file-name="constants.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/constants.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="18" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0">
+            <state line="42" column="18" selection-start="872" selection-end="872" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -94,7 +121,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/veryangrybirds/public/javascripts/angrytest.js" />
         <option value="$PROJECT_DIR$/game.html" />
         <option value="$PROJECT_DIR$/controllers/ui_controller.js" />
         <option value="$PROJECT_DIR$/controllers/sprites_controller.js" />
@@ -110,6 +136,7 @@
         <option value="$PROJECT_DIR$/models/angryammo.js" />
         <option value="$PROJECT_DIR$/models/angrybarn.js" />
         <option value="$PROJECT_DIR$/maingame.js" />
+        <option value="$PROJECT_DIR$/controllers/modes_controller.js" />
       </list>
     </option>
   </component>
@@ -169,6 +196,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -302,11 +343,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Downloads/chat-example/helloworld.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="711" vertical-scroll-proportion="-0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/now.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -354,7 +390,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/constants.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="18" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0">
+        <state line="42" column="18" selection-start="872" selection-end="872" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -389,7 +425,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/maingame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="77" selection-start="2765" selection-end="2765" vertical-scroll-proportion="0.51039696">
+        <state line="20" column="0" selection-start="431" selection-end="431" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/modes_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="143" column="77" selection-start="3883" selection-end="3883" vertical-scroll-proportion="0.55992144">
           <folding />
         </state>
       </provider>
