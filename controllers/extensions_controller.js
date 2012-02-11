@@ -15,6 +15,26 @@ function mibbuMoveSpritePosition( sprite, dx, dy, dz){
 	);
 }
 
+function mibbuConvertInt2Frame( number ) {
+	// numbers live in views/numbers.png
+	// so given any integer number, return an array its digits.
+	// For example given the number 15452
+	// This function should return [1, 5, 4, 5, 2]
+	
+	// TODO: implement me!
+}
+
+function mibbuConvertString2Frame( string ){
+	// letters live in views/letters.png
+	// Given an string composed only of the letters a -> z
+	// return all of it as its frame number
+	// for example, given the string "daddy bad"
+	// this should return [3, 0, 3, 3, 23, 26, 1, 0, 3]
+	// notice that space (as well as all non-a-z characters) returns 26
+	
+	// TODO: implement me!
+}
+
 // This function rotates the entire canvas, so unless you really need to call it, don't use it
 // 
 function mibbuRotateSprite( sprite, angle ){
