@@ -20,7 +20,18 @@ function mibbuConvertInt2Frame( number ) {
 	// so given any integer number, return an array its digits.
 	// For example given the number 15452
 	// This function should return [1, 5, 4, 5, 2]
-	
+
+   // this.number = new Game.spr('views/numbers.png', NUMBER_WIDTH, NUMBER_HEIGHT, 10, 0);
+     var integerString = number.toString();
+    var intArray = {};
+
+    for(var i = 0; i < integerString.length; i++)
+    {
+
+        intArray[i] = parseInt(integerString.substr(i,1));
+    }
+
+     return intArray;
 	// TODO: implement me!
 }
 
@@ -31,7 +42,18 @@ function mibbuConvertString2Frame( string ){
 	// for example, given the string "daddy bad"
 	// this should return [3, 0, 3, 3, 23, 26, 1, 0, 3]
 	// notice that space (as well as all non-a-z characters) returns 26
-	
+
+    var stringArray = {};
+    var properString = string.toString();
+    for(var i = 0; i <= string.length;i++)
+    {    if  ((properString.charCodeAt(i) - 97) < 0)
+        stringArray[i] = 26
+        else
+    {
+        stringArray[i] = properString.charCodeAt(i) - 97;
+    }
+    }
+    return stringArray;
 	// TODO: implement me!
 }
 
