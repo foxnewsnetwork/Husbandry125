@@ -74,7 +74,10 @@ function CheckWithinBounds( sprite, x, y ){
 		if (distanceX*distanceX+distanceY*distanceY>SHOT_RADIUS) {
 			//Calculate angle of fire.
             var shotAngle=Math.atan2(distanceY,distanceX);
-
+			
+			// Spins the cannon sprite
+			playerBarn.rotateCannon( shotAngle * 180 / Math.PI );
+			
             //Keep sprite from moving farther than designated radius.
             xcord=(playerBarn.cannonSprite.x+CANNON_WIDTH/2)+Math.sqrt(SHOT_RADIUS)*Math.cos(shotAngle);
 			ycord=(playerBarn.cannonSprite.y+CANNON_HEIGHT/2)+Math.sqrt(SHOT_RADIUS)*Math.sin(shotAngle);

@@ -80,6 +80,9 @@ var AngryBarn = function(world, player, barnDef) {
 	// Game mechanics macros 
 	// Sets the physical body location  
 	// Call this function to set positions (be sure to use pixels)
+	this.rotateCannon = function(angle){ 
+		mibbuRotateSprite( this.cannonSprite, angle * (-this.direction) );
+	}
 	this.SetPosition = function(x,y){
 		this.absX = x;
 		this.absY = y;
@@ -142,6 +145,7 @@ var AngryBarn = function(world, player, barnDef) {
 		Confluence( this.body, this.cannonSprite2 );
 		mibbuMoveSpritePosition( this.cannonSprite,0,-CANNON_HEIGHT,0);
 		mibbuMoveSpritePosition( this.cannonSprite2,0,-CANNON_HEIGHT,0);
+		mibbuRotateSprite(this.sprite, this.body.GetAngle() * 180 / Math.PI );
 	}
 	this.conflux = function(){
 		Conflux( this.body, this.sprite );
