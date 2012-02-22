@@ -20,8 +20,7 @@ function gameLoop(){
 	}
 var array = mibbuConvertString2Frame("daddy bad");
     //var array = mibbuConvertInt2Frame(12345);
-    alert(array[5]);
-} 
+}
 
 Game.on();
 Game.hook(gameLoop);

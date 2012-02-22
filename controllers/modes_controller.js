@@ -6,7 +6,7 @@ var mousecontrol, bgcontrol;
 var theWorld, thePlayer, theLand, theBarn, theCamera;
 var actors, playerBarn;
 var crosshair;
-
+var playerCount;
 var theMenu;
 function InitializeMenuMode(){
 	gameMode = MODE_MENU;
@@ -23,7 +23,6 @@ function InitializeMenuMode(){
 function InitializeGameMode(){
 	gameMode = MODE_GAME;
 	actors = {};
-
     theCamera = new AngryCamera();
 	theWorld = new AngryWorld();
 	theWorld.initialize();
@@ -31,11 +30,10 @@ function InitializeGameMode(){
     crosshair = new Game.spr('views/crosshair.png', CROSSHAIR_WIDTH, CROSSHAIR_HEIGHT, 1, 0);
     crosshair.speed(0);
     mibbuSetSpritePosition(crosshair,-CROSSHAIR_WIDTH,-CROSSHAIR_HEIGHT,Z_CHARACTERS+1);
-    var barnDef = new BarnDef();
-
+    JoinGame();
     //initialze actors and store them in an array for easy access.
     //As ammo is kind of its own entity, reserve space next to the barns.
-    for(var i = 0; i < PLAYER_COUNT; i++)
+    /*for(var i = 0; i < PLAYER_COUNT; i++)
     {
         //Player create here. Once we change the player definition process
         //this will have to be changed probably.
@@ -45,21 +43,9 @@ function InitializeGameMode(){
 	    theBarn.initialize(300 * i, 300);
         actors[2*i] = theBarn;
         actors[2*i+1] = theBarn.ammo;
-    }
-
+    } */
      //right now define the first barn to be the one we focus on.
 
-     playerBarn = actors[2];
-     
-     // Testing rotation of a barn
-     // Uncommented the following line to contract cancer
-     // mibbuRotateSprite(theBarn.sprite, 0.15);
-     
-     
-	theCamera.follow( playerBarn.ammo );
-
-	bgcontrol = new BackgroundController();
-	bgcontrol.camera = theCamera;
 	
 }
 
@@ -74,9 +60,10 @@ function LoopMenuMode(){
 			if( CheckWithinBounds( theMenu.join, mouseX, mouseY ) ){ 
 				theMenu.join.frame(1);
 				if( mouseDown ){
+                    loadAddGameFunction();
 					gameMode = MODE_GAME;
 					DestroyMenuMode();
-					InitializeGameMode();
+                    InitializeGameMode();
 					return;
 				}
 			}
@@ -110,7 +97,7 @@ function LoopGameMode(){
 	// Step 0: Initialize physics as necessary
 
 	// Step 1: Mass confluence
-    for(var i = 0; i < PLAYER_COUNT; i++)
+    for(var i = 0; i < playerCount; i++)
     {
         actors[i*2].show(theCamera)
     }
