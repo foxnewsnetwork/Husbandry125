@@ -59,12 +59,16 @@ var shopSite = 'gamertiser.com';
 var shopPath = '/api/v1/product.json?token=';
 var shopPort = 80;
 
+//Number of players. When we'll have rooms this will need to be held separately.
 var playerCount = 0;
 
 /****************************
 * Socket IO Response Server *
 ****************************/
 // Initialize the socket connection
+
+//If someone disconnects from server, lower num of players.
+//DOESN"T QUITE WORK
 io.sockets.on('disconnect', function (socket) {
     playerCount--;
     console.log("player disconnect");
@@ -206,6 +210,9 @@ io.sockets.on('connection', function(socket){
 	* Game Server Response          *
 	****************************/
 	// join game
+
+    //Send back down to client info they need. We'll tell them their session id
+    //also the number of players
 	socket.on("join game up", function( data ){
        playerCount++;
 		var middle = {
@@ -215,6 +222,8 @@ io.sockets.on('connection', function(socket){
 		console.log( "middle: ");
 		console.log( middle );
 		socket.emit( "join game down", middle );
+
+        //If there's only one player we dont' need to emit to anyone.
         if(playerCount>1)
         {
             socket.broadcast.emit( "other join game down", middle );

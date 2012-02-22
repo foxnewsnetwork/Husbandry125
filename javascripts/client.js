@@ -141,9 +141,13 @@ socket.on( "join channel down", function( result ){
 // Game rooms (just rooms) are where games happen and exist in the during-game
 // player can be the token or the ip address.
 // if no roomid is specified, the server puts the player into the a game randomly
+
+//We wanna join the game. We'll also send up our sessionId
 function JoinGame(){
     socket.emit( "join game up", {'sessionId': sessionId});
 }
+
+//We the player are joining the game.
 
 socket.on( "join game down", function( result ){
     var handlers = gameFunctionHandlers['player join'];
@@ -151,6 +155,8 @@ socket.on( "join game down", function( result ){
 
 
 } );
+
+//Some other player is joining.
 socket.on( "other join game down", function( result ){
     var handlers = gameFunctionHandlers['other player join'];
         handlers[0](result);

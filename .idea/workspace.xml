@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f579119a-bef9-477b-abe3-28630f0d52a1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/networks_controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/game.iml" afterPath="$PROJECT_DIR$/.idea/game.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/modes_controller.js" afterPath="$PROJECT_DIR$/controllers/modes_controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/maingame.js" afterPath="$PROJECT_DIR$/maingame.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/networks_controller.js" afterPath="$PROJECT_DIR$/controllers/networks_controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/client.js" afterPath="$PROJECT_DIR$/javascripts/client.js" />
     </list>
     <ignored path="game.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,28 +28,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="217" column="24" selection-start="5722" selection-end="5722" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="client.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="154" column="47" selection-start="4486" selection-end="4486" vertical-scroll-proportion="0.0">
+            <state line="158" column="31" selection-start="4515" selection-end="4515" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="networks_controller.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="70" column="10" selection-start="1782" selection-end="1782" vertical-scroll-proportion="0.3478261">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="networks_controller.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/networks_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="32" selection-start="705" selection-end="705" vertical-scroll-proportion="0.42533082">
+            <state line="51" column="28" selection-start="2249" selection-end="2249" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -59,7 +58,7 @@
       <file leaf-file-name="modes_controller.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/modes_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="6" selection-start="989" selection-end="1032" vertical-scroll-proportion="0.0">
+            <state line="33" column="73" selection-start="900" selection-end="900" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -99,11 +98,11 @@
         <option value="$PROJECT_DIR$/controllers/extensions_controller.js" />
         <option value="$PROJECT_DIR$/maingame.js" />
         <option value="$PROJECT_DIR$/javascripts/debug.js" />
-        <option value="$PROJECT_DIR$/controllers/modes_controller.js" />
         <option value="$PROJECT_DIR$/index.jade" />
+        <option value="$PROJECT_DIR$/controllers/networks_controller.js" />
+        <option value="$PROJECT_DIR$/controllers/modes_controller.js" />
         <option value="$PROJECT_DIR$/javascripts/client.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/controllers/networks_controller.js" />
       </list>
     </option>
   </component>
@@ -372,20 +371,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="217" column="24" selection-start="5722" selection-end="5722" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="47" selection-start="4486" selection-end="4486" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/angrymenu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.47448015">
@@ -400,16 +385,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/modes_controller.js">
+    <entry file="file://$PROJECT_DIR$/controllers/networks_controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="6" selection-start="989" selection-end="1032" vertical-scroll-proportion="0.0">
+        <state line="51" column="28" selection-start="2249" selection-end="2249" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/networks_controller.js">
+    <entry file="file://$PROJECT_DIR$/controllers/modes_controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="32" selection-start="705" selection-end="705" vertical-scroll-proportion="0.42533082">
+        <state line="33" column="73" selection-start="900" selection-end="900" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/javascripts/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="158" column="31" selection-start="4515" selection-end="4515" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="10" selection-start="1782" selection-end="1782" vertical-scroll-proportion="0.3478261">
           <folding />
         </state>
       </provider>

@@ -30,6 +30,8 @@ function InitializeGameMode(){
     crosshair = new Game.spr('views/crosshair.png', CROSSHAIR_WIDTH, CROSSHAIR_HEIGHT, 1, 0);
     crosshair.speed(0);
     mibbuSetSpritePosition(crosshair,-CROSSHAIR_WIDTH,-CROSSHAIR_HEIGHT,Z_CHARACTERS+1);
+
+    //Send JoinGame request to client.js. It will send request to server.
     JoinGame();
     //initialze actors and store them in an array for easy access.
     //As ammo is kind of its own entity, reserve space next to the barns.
@@ -60,6 +62,7 @@ function LoopMenuMode(){
 			if( CheckWithinBounds( theMenu.join, mouseX, mouseY ) ){ 
 				theMenu.join.frame(1);
 				if( mouseDown ){
+                    //game is loaded, so load the join game functions for the client/server
                     loadAddGameFunction();
 					gameMode = MODE_GAME;
 					DestroyMenuMode();
