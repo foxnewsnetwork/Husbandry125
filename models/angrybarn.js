@@ -161,7 +161,6 @@ var AngryBarn = function(world, player, barnDef) {
 		this.ammo.fire( velocity );
 	}
     this.wasHit = function(){
-        alert("OUCH I WAS HIT");
 
     }
 	/****************************************

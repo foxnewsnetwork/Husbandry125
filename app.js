@@ -69,16 +69,17 @@ var playerCount = 0;
 
 //If someone disconnects from server, lower num of players.
 //DOESN"T QUITE WORK
-io.sockets.on('disconnect', function (socket) {
-    playerCount--;
-    console.log("player disconnect");
-    socket.emit('user disconnected');
-  });
+
 io.sockets.on('connection', function(socket){
 
 	console.log('we are connected');
 	socket.emit( 'connection', socket.id );
-	
+
+    socket.on('disconnect', function (socket) {
+        if(playerCount != 0)
+        {playerCount--;}
+    console.log("player disconnect");
+  });
 	/****************************
 	* Player Server Response        *
 	****************************/
@@ -236,7 +237,6 @@ io.sockets.on('connection', function(socket){
     socket.on("shoot up", function( data ){
 		//organize shooting data
         var middle = {
-			'sessionId': data['sessionId'],
             'shotData': data['shotData']
 		};
 		console.log( "middle: ");
@@ -247,7 +247,8 @@ io.sockets.on('connection', function(socket){
 
 
 	} );
-	socket.on("shoot up", function( data ){
+
+    socket.on("move up", function( data ){
 		//organize shooting data
         var middle = {
 			'sessionId': data['sessionId'],

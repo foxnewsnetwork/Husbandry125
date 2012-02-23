@@ -10,7 +10,6 @@ function loadAddGameFunction() {
         numOfPlayers = data["playerCount"];
         sessionId = data["sessionId"]
         playerCount = numOfPlayers - 1;
-
         //If there are other people, create them as well.
         //Create as many people as need be and set them at 300 pixel intervals
         for(var i = 0; i < numOfPlayers; i++){
@@ -52,30 +51,23 @@ function loadAddGameFunction() {
     //A player is shooting!
     AddGameFunction("pig shoot",function(data){
       //Get info needed for shooting
-      sessionId = data['sessionId'];
+      id = data['shotData']['id'];
       hForce = data['shotData']['hForce'];
       vForce = data['shotData']['vForce'];
        var shotBarn;
         var vec = new b2Vec2(hForce,vForce);
-
+        alert(id);
         //Find the pig thats shooting a pig
-        for(var i = 0; i<playerCount;i++)
-        {
-          if(actors[2*i].sessionId = sessionId)
-          {
-              shotBarn = actors[2*i];
-          }
-        }
+        shotBarn = actors[2*id];
 
         //make the pig shoot
         shotBarn.ammo.body.ApplyImpulse(vec, shotBarn.ammo.body.GetWorldCenter());
-
         //handle all the other crap.
         shotBarn.ammo.conflux();
         shotBarn.ammo.flying = true;
         shotBarn.ammo.notHit = true;
     }) ;
-    AddGameFunction("pig move",function(data){
+    AddGameFunction("move pig",function(data){
       //Get info needed for shooting
       sessionId = data['sessionId'];
       direction = data['moveData'];

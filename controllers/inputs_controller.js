@@ -136,6 +136,7 @@ function CheckWithinBounds( sprite, x, y ){
 
        //Everytime a pig is shot, we need the client to do work.
        var shotData = {
+           'id': playerBarn.player.id,
            'hForce': horizontalForce,
            'vForce': verticalForce
        }

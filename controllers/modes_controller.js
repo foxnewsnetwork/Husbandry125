@@ -114,12 +114,12 @@ function LoopGameMode(){
 	if( CheckWithinBounds( leftButton, mouseX, mouseY ) ){
 		leftButton.frame(1);
 		playerBarn.move(-1);
-        MovePig(-1);
+        //MovePig(-1);
 	}
 	else if( CheckWithinBounds( rightButton, mouseX, mouseY ) ){
 		rightButton.frame(1);
 		playerBarn.move(1);
-        MovePig(1);
+        //MovePig(1);
 	}
 
     else if (CheckWithinBounds(playerBarn.cannonSprite,mouseX,mouseY) && mouseDown && !playerBarn.ammo.flying)

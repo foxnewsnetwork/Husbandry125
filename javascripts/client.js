@@ -192,12 +192,11 @@ function UpdateServer( sender, event, receiver ){
 }
 //Client shoots pig, send message to server.
 function ShootPig(shotData){
-    socket.emit("shoot up",{'sessionId':sessionId,'shotData':shotData});
+    socket.emit("shoot up",{'shotData':shotData});
 }
 
 function MovePig(moveData){
     socket.emit("move up",{'sessionId':sessionId,'moveData':moveData});
-
 }
 
 
@@ -209,7 +208,7 @@ socket.on("shoot down", function( result ){
 });
 
 socket.on("move down",function(result){
-    var handlers = gameFunctionHandlers['pig move'];
+    var handlers = gameFunctionHandlers['move pig'];
             handlers[0](result);
 });
 socket.on("sync down", function( value ){ 
