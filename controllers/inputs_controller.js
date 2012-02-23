@@ -133,6 +133,8 @@ function CheckWithinBounds( sprite, x, y ){
 
        //remove listener so we don't accidentally fire ammo again.
        document.removeEventListener("mouseup", handleAmmoRelease, true);
+
+       //Everytime a pig is shot, we need the client to do work.
        var shotData = {
            'hForce': horizontalForce,
            'vForce': verticalForce

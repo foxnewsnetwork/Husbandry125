@@ -50,12 +50,16 @@ function loadAddGameFunction() {
     playerCount++;
     });
 
+    //A player is shooting!
     AddGameFunction("pig shoot",function(data){
+      //Get info needed for shooting
       sessionId = data['sessionId'];
       hForce = data['shotData']['hForce'];
       vForce = data['shotData']['vForce'];
        var shotBarn;
         var vec = new b2Vec2(hForce,vForce);
+
+        //Find the pig thats shooting a pig
         for(var i = 0; i<playerCount;i++)
         {
           if(actors[2*i].sessionId = sessionId)
@@ -63,9 +67,11 @@ function loadAddGameFunction() {
               shotBarn = actors[2*i];
           }
         }
+
+        //make the pig shoot
         shotBarn.ammo.body.ApplyImpulse(vec, shotBarn.ammo.body.GetWorldCenter());
 
-        //Handle conflux of ammo.
+        //handle all the other crap.
         shotBarn.ammo.conflux();
         shotBarn.ammo.flying = true;
         shotBarn.ammo.notHit = true;

@@ -231,14 +231,17 @@ io.sockets.on('connection', function(socket){
 
 
 	} );
+
+    //Got request to shoot. Need to emit to all that someone shot.
     socket.on("shoot up", function( data ){
-		var middle = {
+		//organize shooting data
+        var middle = {
 			'sessionId': data['sessionId'],
             'shotData': data['shotData']
 		};
 		console.log( "middle: ");
 		console.log( middle );
-
+        //Inform everyone else that someone shot.
             socket.broadcast.emit( "shoot down", middle );
 
 

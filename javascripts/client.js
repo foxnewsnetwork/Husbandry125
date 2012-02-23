@@ -190,11 +190,11 @@ function UpdateServer( sender, event, receiver ){
 		socket.emit( "sync up", syncPercentDeviation);
 	} );
 }
-
+//Client shoots pig, send message to server.
 function ShootPig(shotData){
     socket.emit("shoot up",{'sessionId':sessionId,'shotData':shotData});
 }
-
+//Receive message from server that we need to shoot stuff.
 socket.on("shoot down", function( result ){
     var handlers = gameFunctionHandlers['pig shoot'];
             handlers[0](result);
