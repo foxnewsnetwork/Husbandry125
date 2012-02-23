@@ -31,6 +31,7 @@ var AngryBarn = function(world, player, barnDef) {
 	this.currenthp = barnDef.maxhp;
 //	this.image = barnDef.image;
 	this.player = player;
+    this.sessionId = player.sessionId;
 	this.ammo = new AngryAmmo( world, player, barnDef.ammoDef );
 	this.maxspeed = barnDef.maxspeed;
 	this.mode = BARN_MODE_MOVE;

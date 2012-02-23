@@ -231,6 +231,19 @@ io.sockets.on('connection', function(socket){
 
 
 	} );
+    socket.on("shoot up", function( data ){
+		var middle = {
+			'sessionId': data['sessionId'],
+            'shotData': data['shotData']
+		};
+		console.log( "middle: ");
+		console.log( middle );
+
+            socket.broadcast.emit( "shoot down", middle );
+
+
+
+	} );
 	
 	// game event
 	socket.on( "game event up", function(data){ 

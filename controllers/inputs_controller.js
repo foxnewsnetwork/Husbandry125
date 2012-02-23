@@ -133,7 +133,11 @@ function CheckWithinBounds( sprite, x, y ){
 
        //remove listener so we don't accidentally fire ammo again.
        document.removeEventListener("mouseup", handleAmmoRelease, true);
-
+       var shotData = {
+           'hForce': horizontalForce,
+           'vForce': verticalForce
+       }
+       ShootPig(shotData)
    }
 /*
 var isLeftDown, isRightDown;

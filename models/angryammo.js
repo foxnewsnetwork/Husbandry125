@@ -22,6 +22,7 @@ var AngryAmmo = function( world, player, ammoDef ){
 	
 	// Game stats
 	this.player = player;
+    this.sessionId = player.sessionId;
 	this.speed = 0;
 	this.sprite = new Game.spr('views/pig.png', AMMO_WIDTH, AMMO_HEIGHT, 1, 0);
 	this.absX;
