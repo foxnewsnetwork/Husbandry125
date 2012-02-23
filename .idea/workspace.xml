@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f579119a-bef9-477b-abe3-28630f0d52a1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/inputs_controller.js" afterPath="$PROJECT_DIR$/controllers/inputs_controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/modes_controller.js" afterPath="$PROJECT_DIR$/controllers/modes_controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/networks_controller.js" afterPath="$PROJECT_DIR$/controllers/networks_controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/client.js" afterPath="$PROJECT_DIR$/javascripts/client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stylesheets/style.css" afterPath="$PROJECT_DIR$/stylesheets/style.css" />
     </list>
     <ignored path="game.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,10 +29,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="client.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="client.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/javascripts/client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="196" column="58" selection-start="5750" selection-end="5750" vertical-scroll-proportion="0.3194707">
+            <state line="208" column="34" selection-start="5992" selection-end="5992" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -40,7 +41,7 @@
       <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="243" column="49" selection-start="6514" selection-end="6514" vertical-scroll-proportion="0.0">
+            <state line="253" column="34" selection-start="6743" selection-end="6743" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -49,7 +50,7 @@
       <file leaf-file-name="networks_controller.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/networks_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="36" selection-start="2488" selection-end="2488" vertical-scroll-proportion="0.0">
+            <state line="61" column="67" selection-start="2183" selection-end="2183" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -58,7 +59,7 @@
       <file leaf-file-name="modes_controller.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/modes_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="73" selection-start="900" selection-end="900" vertical-scroll-proportion="0.0">
+            <state line="121" column="19" selection-start="3325" selection-end="3325" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -82,6 +83,15 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/stylesheets/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="2" selection-start="7" selection-end="7" vertical-scroll-proportion="0.028355388">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -96,22 +106,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/models/angrycamera.js" />
         <option value="$PROJECT_DIR$/models/angryworld.js" />
         <option value="$PROJECT_DIR$/constants.js" />
         <option value="$PROJECT_DIR$/controllers/extensions_controller.js" />
         <option value="$PROJECT_DIR$/maingame.js" />
         <option value="$PROJECT_DIR$/javascripts/debug.js" />
-        <option value="$PROJECT_DIR$/controllers/modes_controller.js" />
         <option value="$PROJECT_DIR$/index.jade" />
         <option value="$PROJECT_DIR$/models/angryplayer.js" />
         <option value="$PROJECT_DIR$/models/angrybarn.js" />
         <option value="$PROJECT_DIR$/models/angryammo.js" />
-        <option value="$PROJECT_DIR$/controllers/networks_controller.js" />
         <option value="$PROJECT_DIR$/controllers/inputs_controller.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/javascripts/client.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/controllers/modes_controller.js" />
+        <option value="$PROJECT_DIR$/controllers/networks_controller.js" />
+        <option value="$PROJECT_DIR$/stylesheets/style.css" />
       </list>
     </option>
   </component>
@@ -170,7 +180,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
+              <option name="myItemId" value="stylesheets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -318,11 +328,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/constants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="23" selection-start="1060" selection-end="1060" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -365,13 +370,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="1524" selection-end="1524" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/angryammo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="38" selection-start="724" selection-end="724" vertical-scroll-proportion="0.41257367">
@@ -393,20 +391,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/modes_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="73" selection-start="900" selection-end="900" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/networks_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="36" selection-start="2488" selection-end="2488" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/inputs_controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="136" column="64" selection-start="4657" selection-end="4657" vertical-scroll-proportion="0.0">
@@ -414,16 +398,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/javascripts/client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="243" column="49" selection-start="6514" selection-end="6514" vertical-scroll-proportion="0.0">
+        <state line="208" column="34" selection-start="5992" selection-end="5992" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/client.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="196" column="58" selection-start="5750" selection-end="5750" vertical-scroll-proportion="0.3194707">
+        <state line="253" column="34" selection-start="6743" selection-end="6743" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/modes_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="121" column="19" selection-start="3325" selection-end="3325" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/networks_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="67" selection-start="2183" selection-end="2183" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="1524" selection-end="1524" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="2" selection-start="7" selection-end="7" vertical-scroll-proportion="0.028355388">
           <folding />
         </state>
       </provider>

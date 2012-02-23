@@ -38,7 +38,6 @@ function loadAddGameFunction() {
     numOfPlayers = data["playerCount"];
     sessionId = data["sessionId"];
     playerCount = numOfPlayers - 1;
-    alert(playerCount);
     //make other player appear and in the game world.
     thePlayer = new AngryPlayer(playerCount,sessionId,new PlayerDef() );
 	theBarn = new AngryBarn( theWorld, thePlayer, barnDef );
@@ -75,5 +74,23 @@ function loadAddGameFunction() {
         shotBarn.ammo.conflux();
         shotBarn.ammo.flying = true;
         shotBarn.ammo.notHit = true;
+    }) ;
+    AddGameFunction("pig move",function(data){
+      //Get info needed for shooting
+      sessionId = data['sessionId'];
+      direction = data['moveData'];
+       var shotBarn;
+        var vec = new b2Vec2(hForce,vForce);
+
+        //Find the pig thats shooting a pig
+        for(var i = 0; i<playerCount;i++)
+        {
+          if(actors[2*i].sessionId = sessionId)
+          {
+              moveBarn = actors[2*i];
+          }
+        }
+
+        moveBarn.move(direction);
     }) ;
 }

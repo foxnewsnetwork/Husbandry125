@@ -247,7 +247,20 @@ io.sockets.on('connection', function(socket){
 
 
 	} );
-	
+	socket.on("shoot up", function( data ){
+		//organize shooting data
+        var middle = {
+			'sessionId': data['sessionId'],
+            'moveData': data['moveData']
+		};
+		console.log( "middle: ");
+		console.log( middle );
+        //Inform everyone else that someone shot.
+            socket.broadcast.emit( "move down", middle );
+
+
+
+	} );
 	// game event
 	socket.on( "game event up", function(data){ 
 		// TODO: write this
