@@ -60,8 +60,9 @@ var shopPath = '/api/v1/product.json?token=';
 var shopPort = 80;
 
 //Number of players. When we'll have rooms this will need to be held separately.
-var playerCount = 0;
+//var playerCount = 0;
 
+var rooms = [0,0,0,0];
 /****************************
 * Socket IO Response Server *
 ****************************/
@@ -69,7 +70,20 @@ var playerCount = 0;
 
 //If someone disconnects from server, lower num of players.
 //DOESN"T QUITE WORK
+function findRoom(){
+    roomNum=0;
+    for(var i = 0; i<rooms.length;i++)
+    {
+      if(rooms[i] < 4)
+      {
+          rooms[i]++;
+         return i;
+      }
+    }
 
+    return roomNum;
+
+}
 io.sockets.on('connection', function(socket){
 
 	console.log('we are connected');
@@ -78,6 +92,7 @@ io.sockets.on('connection', function(socket){
     socket.on('disconnect', function (socket) {
         if(playerCount != 0)
         {playerCount--;}
+        socket.leave(socket.room);
     console.log("player disconnect");
   });
 	/****************************
@@ -215,19 +230,22 @@ io.sockets.on('connection', function(socket){
     //Send back down to client info they need. We'll tell them their session id
     //also the number of players
 	socket.on("join game up", function( data ){
-       playerCount++;
+        roomNum = "room" + findRoom();
+        socket.room = roomNum;
+        socket.join(roomNum);
 		var middle = {
 			'sessionId': data['sessionId'],
-             'playerCount': playerCount
+             'playerCount': rooms[roomNum]
 		};
 		console.log( "middle: ");
 		console.log( middle );
+
 		socket.emit( "join game down", middle );
 
         //If there's only one player we dont' need to emit to anyone.
         if(playerCount>1)
         {
-            socket.broadcast.emit( "other join game down", middle );
+            socket.broadcast.to(roomNum).emit( "other join game down", middle );
         }
 
 
@@ -242,7 +260,7 @@ io.sockets.on('connection', function(socket){
 		console.log( "middle: ");
 		console.log( middle );
         //Inform everyone else that someone shot.
-            socket.broadcast.emit( "shoot down", middle );
+            socket.broadcast.to(roomNum).emit( "shoot down", middle );
 
 
 

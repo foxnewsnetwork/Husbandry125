@@ -72,7 +72,6 @@ function loadAddGameFunction() {
       sessionId = data['sessionId'];
       direction = data['moveData'];
        var shotBarn;
-        var vec = new b2Vec2(hForce,vForce);
 
         //Find the pig thats shooting a pig
         for(var i = 0; i<playerCount;i++)

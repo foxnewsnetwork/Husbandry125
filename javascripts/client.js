@@ -6,6 +6,7 @@ var sessionId;
 
 socket.on( "connection", function(id){ 
 	sessionId = id;
+
 });
 
 /**********************
