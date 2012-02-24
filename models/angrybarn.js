@@ -170,6 +170,8 @@ var AngryBarn = function(world, player, barnDef) {
 	*****************************************/
 	this.destroy = function( ){
         mibbuSetSpritePosition( this.sprite, -300 , 0 -20, 0);
+        mibbuSetSpritePosition( this.cannonSprite, -300 , 0 -20, 0);
+
 		this.conflux();
 	}
 	this.serialize = function( ){

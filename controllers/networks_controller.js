@@ -12,15 +12,20 @@ function loadAddGameFunction() {
         playerCount = numOfPlayers - 1;
         //If there are other people, create them as well.
         //Create as many people as need be and set them at 300 pixel intervals
+
+        openSpot = findAvailablePig();
+
         for(var i = 0; i < numOfPlayers; i++){
+
             thePlayer = new AngryPlayer(i,sessionId,new PlayerDef() );
 	        theBarn = new AngryBarn( theWorld, thePlayer, barnDef );
 	        theBarn.initialize(300 * i, 300);
             actors[2*i] = theBarn;
             actors[2*i+1] = theBarn.ammo;
+
         }
         //Set the latest player as YOU
-        playerBarn = actors[2*playerCount];
+        playerBarn = actors[2*openSpot];
         theCamera.follow( playerBarn.ammo );
 
         //Dunno what this even does
@@ -37,12 +42,14 @@ function loadAddGameFunction() {
     numOfPlayers = data["playerCount"];
     sessionId = data["sessionId"];
     playerCount = numOfPlayers - 1;
+    openSpot = findAvailablePig();
+
     //make other player appear and in the game world.
-    thePlayer = new AngryPlayer(playerCount,sessionId,new PlayerDef() );
+    thePlayer = new AngryPlayer(openSpot,sessionId,new PlayerDef() );
 	theBarn = new AngryBarn( theWorld, thePlayer, barnDef );
-	theBarn.initialize(300 * playerCount, 300);
-    actors[2*playerCount] = theBarn;
-    actors[2*playerCount+1] = theBarn.ammo;
+	theBarn.initialize(300 * openSpot, 300);
+    actors[2*openSpot] = theBarn;
+    actors[2*openSpot+1] = theBarn.ammo;
 
     //another player added
     playerCount++;
@@ -92,4 +99,16 @@ function removePig(pigId)
     removedPig.destroy();
     removePigAmmo = actors[(2*(pigId-1))+1];
     removePigAmmo.destroy();
+    actors[2*(pigId-1)] = null
+    actors[(2*(pigId-1))+1] = null;
+}
+function findAvailablePig(){
+
+   for(var i = 0; i < actors.length;i++)
+   {
+     if(actors[2*i] == null)
+     {
+         return i;
+     }
+   }
 }

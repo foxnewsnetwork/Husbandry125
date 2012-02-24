@@ -22,7 +22,7 @@ function InitializeMenuMode(){
 
 function InitializeGameMode(){
 	gameMode = MODE_GAME;
-	actors = {};
+	actors = new Array(4);
     theCamera = new AngryCamera();
 	theWorld = new AngryWorld();
 	theWorld.initialize();
@@ -102,7 +102,8 @@ function LoopGameMode(){
 	// Step 1: Mass confluence
     for(var i = 0; i < playerCount; i++)
     {
-        actors[i*2].show(theCamera)
+        if(actors[i*2] != null)
+        {actors[i*2].show(theCamera)}
     }
     $("#debug").html("y velocity: " + playerBarn.body.GetLinearVelocity().y);
 
