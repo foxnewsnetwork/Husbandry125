@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f579119a-bef9-477b-abe3-28630f0d52a1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/game.iml" afterPath="$PROJECT_DIR$/.idea/game.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/networks_controller.js" afterPath="$PROJECT_DIR$/controllers/networks_controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascripts/client.js" afterPath="$PROJECT_DIR$/javascripts/client.js" />
     </list>
     <ignored path="game.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,7 +37,7 @@
       <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="235" column="37" selection-start="6123" selection-end="6123" vertical-scroll-proportion="4.848771">
+            <state line="92" column="38" selection-start="2203" selection-end="2203" vertical-scroll-proportion="0.34026465">
               <folding />
             </state>
           </provider>
@@ -380,9 +376,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/networks_controller.js">
+    <entry file="file://$PROJECT_DIR$/javascripts/client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="0" selection-start="2634" selection-end="2634" vertical-scroll-proportion="0.0">
+        <state line="8" column="0" selection-start="194" selection-end="194" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -394,16 +390,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/javascripts/client.js">
+    <entry file="file://$PROJECT_DIR$/controllers/networks_controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="194" selection-end="194" vertical-scroll-proportion="0.0">
+        <state line="74" column="0" selection-start="2634" selection-end="2634" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="235" column="37" selection-start="6123" selection-end="6123" vertical-scroll-proportion="4.848771">
+        <state line="92" column="38" selection-start="2203" selection-end="2203" vertical-scroll-proportion="0.34026465">
           <folding />
         </state>
       </provider>

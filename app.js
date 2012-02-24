@@ -71,10 +71,11 @@ var rooms = [0,0,0,0];
 //If someone disconnects from server, lower num of players.
 //DOESN"T QUITE WORK
 function findRoom(){
+    console.log("finding room");
     roomNum=0;
     for(var i = 0; i<rooms.length;i++)
     {
-      if(rooms[i] < 4)
+      if(rooms[i] < 2)
       {
           rooms[i]++;
          return i;
@@ -89,10 +90,14 @@ io.sockets.on('connection', function(socket){
 	console.log('we are connected');
 	socket.emit( 'connection', socket.id );
 
-    socket.on('disconnect', function (socket) {
-        if(playerCount != 0)
-        {playerCount--;}
-        socket.leave(socket.room);
+    socket.on('disconnect', function () {
+     if(socket != null && socket.room != null)
+     {
+
+         rooms[socket.room]--;
+         console.log("players left in room: " + rooms[socket.room]);
+         socket.leave("room"+socket.room);
+     }
     console.log("player disconnect");
   });
 	/****************************
@@ -230,9 +235,13 @@ io.sockets.on('connection', function(socket){
     //Send back down to client info they need. We'll tell them their session id
     //also the number of players
 	socket.on("join game up", function( data ){
-        roomNum = "room" + findRoom();
+        console.log("joining game");
+
+        roomNum = findRoom();
+        roomName = "room" + roomNum;
+        console.log("joining room " + roomNum);
         socket.room = roomNum;
-        socket.join(roomNum);
+        socket.join(roomName);
 		var middle = {
 			'sessionId': data['sessionId'],
              'playerCount': rooms[roomNum]
@@ -243,7 +252,7 @@ io.sockets.on('connection', function(socket){
 		socket.emit( "join game down", middle );
 
         //If there's only one player we dont' need to emit to anyone.
-        if(playerCount>1)
+        if(rooms[roomNum]>1)
         {
             socket.broadcast.to(roomNum).emit( "other join game down", middle );
         }
