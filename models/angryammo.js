@@ -140,8 +140,9 @@ var AngryAmmo = function( world, player, ammoDef ){
 		// TODO: implement me!
 	}
 	this.destroy = function( ){
-		// TODO: implement me! (all I need to do is remove this object from the game)
-	}
+        mibbuSetSpritePosition( this.sprite, -300 , 0 -20, 0);
+		this.conflux();
+    }
 	this.completeConfluence = function() { 
 		CompleteConfluence( this );
 	}

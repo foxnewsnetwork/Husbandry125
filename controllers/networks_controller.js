@@ -85,3 +85,11 @@ function loadAddGameFunction() {
         moveBarn.move(direction);
     }) ;
 }
+
+function removePig(pigId)
+{
+     removedPig = actors[2*(pigId-1)];
+    removedPig.destroy();
+    removePigAmmo = actors[(2*(pigId-1))+1];
+    removePigAmmo.destroy();
+}

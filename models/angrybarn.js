@@ -169,7 +169,8 @@ var AngryBarn = function(world, player, barnDef) {
 	*****************************************
 	*****************************************/
 	this.destroy = function( ){
-		// TODO: implement me! (all I need to do is remove this object from the game)
+        mibbuSetSpritePosition( this.sprite, -300 , 0 -20, 0);
+		this.conflux();
 	}
 	this.serialize = function( ){
 		// TODO: implement me! (I need to serialize the properties in this function and save to db)

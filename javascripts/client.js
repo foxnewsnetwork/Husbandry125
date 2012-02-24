@@ -5,8 +5,7 @@ var socket = io.connect('http://localhost');
 var sessionId;
 
 socket.on( "connection", function(id){ 
-	sessionId = id;
-
+    sessionId = id;
 });
 
 /**********************
@@ -200,7 +199,9 @@ function MovePig(moveData){
     socket.emit("move up",{'sessionId':sessionId,'moveData':moveData});
 }
 
-
+socket.on("someone left", function( result ){
+    removePig(result);
+});
 //Receive message from server that we need to shoot stuff.
 socket.on("shoot down", function( result ){
     var handlers = gameFunctionHandlers['pig shoot'];

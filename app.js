@@ -93,11 +93,19 @@ io.sockets.on('connection', function(socket){
     socket.on('disconnect', function () {
      if(socket != null && socket.room != null)
      {
-
          rooms[socket.room]--;
-         console.log("players left in room: " + rooms[socket.room]);
+        //var sessionStuff = {
+          //   'sessionId': socket.sessionId
+         //}
+         socket.broadcast.to("room"+socket.room).emit("someone left",socket.roomId);
+
          socket.leave("room"+socket.room);
+         console.log("players left in room"+ socket.room +": " + rooms[socket.room]);
+
+
      }
+        console.log(socket.sessionId);
+
     console.log("player disconnect");
   });
 	/****************************
@@ -239,8 +247,9 @@ io.sockets.on('connection', function(socket){
 
         roomNum = findRoom();
         roomName = "room" + roomNum;
-        console.log("joining room " + roomNum);
+        console.log("joining room" + roomNum);
         socket.room = roomNum;
+        socket.roomId = rooms[roomNum];
         socket.join(roomName);
 		var middle = {
 			'sessionId': data['sessionId'],
@@ -254,7 +263,7 @@ io.sockets.on('connection', function(socket){
         //If there's only one player we dont' need to emit to anyone.
         if(rooms[roomNum]>1)
         {
-            socket.broadcast.to(roomNum).emit( "other join game down", middle );
+            socket.broadcast.to(roomName).emit( "other join game down", middle );
         }
 
 
