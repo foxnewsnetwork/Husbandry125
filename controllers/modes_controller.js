@@ -104,6 +104,12 @@ function LoopGameMode(){
     {
         if(actors[i*2] != null)
         {actors[i*2].show(theCamera)}
+
+        //If a pig is moving, let it move
+        if(actors[i*2].walking)
+        {
+            actors[i*2].move(actors[i*2].direction);
+        }
     }
     $("#debug").html("y velocity: " + playerBarn.body.GetLinearVelocity().y);
 
@@ -112,17 +118,37 @@ function LoopGameMode(){
 	
 	var ammoFireFlag = false;
 	// Step 2: Handle input
-	if( CheckWithinBounds( leftButton, mouseX, mouseY ) ){
+    if(!playerBarn.walking)
+    {
+        if(CheckWithinBounds( leftButton, mouseX, mouseY ) ){
 		leftButton.frame(1);
-		playerBarn.move(-1);
-        //MovePig(-1);
+		//playerBarn.move(-1);
+        playerBarn.direction = -1;
+        playerBarn.walking = true;
+        MovePig(-1);
 	}
-	else if( CheckWithinBounds( rightButton, mouseX, mouseY ) ){
+	else if(CheckWithinBounds( rightButton, mouseX, mouseY ) ){
 		rightButton.frame(1);
-		playerBarn.move(1);
-        //MovePig(1);
+		//playerBarn.move(1);
+        playerBarn.direction = 1;
+        playerBarn.walking = true;
+        MovePig(1);
+	    }
+    }
+    else if(playerBarn.walking && playerBarn.direction == -1 && !CheckWithinBounds( leftButton, mouseX, mouseY ) ){
+		leftButton.frame(0);
+		//playerBarn.move(-1);
+        playerBarn.direction = -1;
+        playerBarn.walking = false;
+        MovePig(0);
 	}
-
+	else if(playerBarn.walking && playerBarn.direction == 1 && !CheckWithinBounds( rightButton, mouseX, mouseY ) ){
+		rightButton.frame(0);
+		//playerBarn.move(1);
+        playerBarn.direction = 1;
+        playerBarn.walking = false;
+        MovePig(0);
+	}
     else if (CheckWithinBounds(playerBarn.cannonSprite,mouseX,mouseY) && mouseDown && !playerBarn.ammo.flying)
     {
         //Firstly just realign the mouse. Even if the mouse isn't moved,
@@ -160,6 +186,7 @@ function LoopGameMode(){
          if(playerBarn.ammo.body.GetLinearVelocity().x == 0 )
          {
              playerBarn.ammo.reset(playerBarn.cannonSprite.x,playerBarn.cannonSprite.y);
+             ResetShot();
          }
 
      }

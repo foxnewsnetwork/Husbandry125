@@ -13,8 +13,7 @@ function loadAddGameFunction() {
         //If there are other people, create them as well.
         //Create as many people as need be and set them at 300 pixel intervals
 
-        openSpot = findAvailablePig();
-
+        openSpot = data["playerSpot"];
         for(var i = 0; i < numOfPlayers; i++){
 
             thePlayer = new AngryPlayer(i,sessionId,new PlayerDef() );
@@ -42,7 +41,7 @@ function loadAddGameFunction() {
     numOfPlayers = data["playerCount"];
     sessionId = data["sessionId"];
     playerCount = numOfPlayers - 1;
-    openSpot = findAvailablePig();
+    openSpot = data['playerSpot'];
 
     //make other player appear and in the game world.
     thePlayer = new AngryPlayer(openSpot,sessionId,new PlayerDef() );
@@ -63,7 +62,6 @@ function loadAddGameFunction() {
       vForce = data['shotData']['vForce'];
        var shotBarn;
         var vec = new b2Vec2(hForce,vForce);
-        alert(id);
         //Find the pig thats shooting a pig
         shotBarn = actors[2*id];
 
@@ -78,37 +76,35 @@ function loadAddGameFunction() {
       //Get info needed for shooting
       sessionId = data['sessionId'];
       direction = data['moveData'];
+      pigId = data['pigData'];
        var shotBarn;
 
         //Find the pig thats shooting a pig
-        for(var i = 0; i<playerCount;i++)
-        {
-          if(actors[2*i].sessionId = sessionId)
-          {
-              moveBarn = actors[2*i];
-          }
+        if(direction != 0){
+        actors[2*pigId].direction = direction;
+        actors[2*pigId].walking = true;
         }
-
-        moveBarn.move(direction);
+        else
+        {
+         actors[2*pigId].direction = direction;
+        actors[2*pigId].walking = false;
+        }
     }) ;
 }
 
 function removePig(pigId)
 {
-     removedPig = actors[2*(pigId-1)];
+     removedPig = actors[2*(pigId)];
     removedPig.destroy();
-    removePigAmmo = actors[(2*(pigId-1))+1];
+    removePigAmmo = actors[(2*(pigId))+1];
     removePigAmmo.destroy();
-    actors[2*(pigId-1)] = null
-    actors[(2*(pigId-1))+1] = null;
+    actors[2*(pigId)] = null
+    actors[(2*(pigId))+1] = null;
 }
-function findAvailablePig(){
 
-   for(var i = 0; i < actors.length;i++)
-   {
-     if(actors[2*i] == null)
-     {
-         return i;
-     }
-   }
+function resetShotPig(data){
+    var pigId = data['playerSlot']
+    resetPig = actors[2*pigId];
+    resetPig.ammo.reset(resetPig.cannonSprite.x,resetPig.cannonSprite.y);
+
 }

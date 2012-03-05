@@ -62,7 +62,68 @@ var shopPort = 80;
 //Number of players. When we'll have rooms this will need to be held separately.
 //var playerCount = 0;
 
-var rooms = [0,0,0,0];
+var gamerooms = function(){
+	this.rooms = [0,0,0,0];
+	this.playerAlloc;
+    this.ROOMLIMIT = 2
+
+	this.JoinAvailableRoom = function(playerId){
+       var roomInfo= {};
+        var roomNum = -1;
+        console.log(playerId + " is finding room");
+         var roomFound = false
+        var i = 0;
+         while(!roomFound)
+            {
+                if(this.rooms[i] < this.ROOMLIMIT)
+                {
+                    this.rooms[i]++;
+                    roomInfo['roomNum'] = i;
+                    roomNum = i;
+                    roomFound = true;
+                }
+                  i++;
+             }
+        console.log("Found room #"+roomNum);
+        var slotFound = false;
+        var k = 0;
+            while(!slotFound)
+          {
+              if(this.playerAlloc[roomNum][k] == null)
+                {
+                       this.playerAlloc[roomNum][k] = playerId;
+                    roomInfo['playerSpot'] = k;
+                    slotFound = true;
+                }
+              k++
+          }
+        console.log("playerId joined at position " + roomInfo['playerSpot']);
+
+    return roomInfo;
+    }
+
+	this.GetRoom = function(roomNum){
+		return this.rooms[roomNum];
+	}
+
+	this.LeaveRoom = function(roomNum,spot){
+        this.rooms[roomNum]--;
+        this.playerAlloc[roomNum][spot] = null;
+    }
+
+	this.Initialize = function(){
+		this.playerAlloc = new Array(4);
+        for (var i = 0; i < 4; i++) {
+            this.playerAlloc[i] = new Array(2);
+          }
+
+	}
+
+
+}
+
+var gameRooms = new gamerooms();
+gameRooms.Initialize();
 /****************************
 * Socket IO Response Server *
 ****************************/
@@ -70,41 +131,27 @@ var rooms = [0,0,0,0];
 
 //If someone disconnects from server, lower num of players.
 //DOESN"T QUITE WORK
-function findRoom(){
-    console.log("finding room");
-    roomNum=0;
-    for(var i = 0; i<rooms.length;i++)
-    {
-      if(rooms[i] < 2)
-      {
-          rooms[i]++;
-         return i;
-      }
-    }
 
-    return roomNum;
-
-}
 io.sockets.on('connection', function(socket){
 
 	console.log('we are connected');
-	socket.emit( 'connection', socket.id );
+	socket.emit( 'connection2', socket.id );
 
     socket.on('disconnect', function () {
      if(socket != null && socket.room != null)
      {
-         rooms[socket.room]--;
+         gameRooms.LeaveRoom(socket.room,socket.roomId);
         //var sessionStuff = {
           //   'sessionId': socket.sessionId
          //}
          socket.broadcast.to("room"+socket.room).emit("someone left",socket.roomId);
 
          socket.leave("room"+socket.room);
-         console.log("players left in room"+ socket.room +": " + rooms[socket.room]);
+         console.log("players left in room "+ socket.room + "at position " + socket.roomId);
 
 
      }
-        console.log(socket.sessionId);
+        console.log("ID of socket " + socket.id);
 
     console.log("player disconnect");
   });
@@ -245,15 +292,16 @@ io.sockets.on('connection', function(socket){
 	socket.on("join game up", function( data ){
         console.log("joining game");
 
-        roomNum = findRoom();
-        roomName = "room" + roomNum;
-        console.log("joining room" + roomNum);
+        roomInfo = gameRooms.JoinAvailableRoom(socket.id);
+        roomNum = roomInfo['roomNum'];
+        roomName = "room" + roomInfo['roomNum'];
         socket.room = roomNum;
-        socket.roomId = rooms[roomNum];
+        socket.roomId = roomInfo['playerSpot'];
         socket.join(roomName);
 		var middle = {
-			'sessionId': data['sessionId'],
-             'playerCount': rooms[roomNum]
+			'sessionId': socket.id,
+             'playerCount': gameRooms.GetRoom(roomNum),
+            'playerSpot': roomInfo['playerSpot']
 		};
 		console.log( "middle: ");
 		console.log( middle );
@@ -261,7 +309,7 @@ io.sockets.on('connection', function(socket){
 		socket.emit( "join game down", middle );
 
         //If there's only one player we dont' need to emit to anyone.
-        if(rooms[roomNum]>1)
+        if(gameRooms.GetRoom(roomNum)>1)
         {
             socket.broadcast.to(roomName).emit( "other join game down", middle );
         }
@@ -277,8 +325,9 @@ io.sockets.on('connection', function(socket){
 		};
 		console.log( "middle: ");
 		console.log( middle );
+        roomName = "room"+socket.room;
         //Inform everyone else that someone shot.
-            socket.broadcast.to(roomNum).emit( "shoot down", middle );
+            socket.broadcast.to(roomName).emit( "shoot down", middle );
 
 
 
@@ -288,16 +337,27 @@ io.sockets.on('connection', function(socket){
 		//organize shooting data
         var middle = {
 			'sessionId': data['sessionId'],
+            'pigData': socket.roomId,
             'moveData': data['moveData']
 		};
 		console.log( "middle: ");
 		console.log( middle );
+        roomName = "room"+socket.room;
         //Inform everyone else that someone shot.
-            socket.broadcast.emit( "move down", middle );
+            socket.broadcast.to(roomName).emit( "move down", middle );
 
 
 
 	} );
+
+    socket.on("reset shot up", function(data){
+       var middle = {
+            'playerSlot': socket.roomId
+        }
+        roomName = "room"+socket.room;
+        //Inform everyone else that someone shot.
+         socket.broadcast.to(roomName).emit( "reset shot down", middle );
+    }) ;
 	// game event
 	socket.on( "game event up", function(data){ 
 		// TODO: write this

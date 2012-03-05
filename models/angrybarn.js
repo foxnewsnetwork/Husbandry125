@@ -35,7 +35,7 @@ var AngryBarn = function(world, player, barnDef) {
 	this.ammo = new AngryAmmo( world, player, barnDef.ammoDef );
 	this.maxspeed = barnDef.maxspeed;
 	this.mode = BARN_MODE_MOVE;
-	
+	this.walking = false;
 	// Introducing the concept of absolute pixel coordinates
 	this.absX;
 	this.absY;
@@ -161,7 +161,8 @@ var AngryBarn = function(world, player, barnDef) {
 		this.ammo.fire( velocity );
 	}
     this.wasHit = function(){
-
+        this.currenthp -= 10
+        alert(this.currenthp)
     }
 	/****************************************
 	*****************************************

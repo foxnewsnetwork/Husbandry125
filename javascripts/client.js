@@ -1,3 +1,4 @@
+//Client for pig shooters
 /***********************
 * Game Client API Code  *
 ***********************/
@@ -192,11 +193,15 @@ function UpdateServer( sender, event, receiver ){
 }
 //Client shoots pig, send message to server.
 function ShootPig(shotData){
-    socket.emit("shoot up",{'shotData':shotData});
+    socket.emit("shoot up",{'sessionId':sessionId,'shotData':shotData});
 }
 
 function MovePig(moveData){
     socket.emit("move up",{'sessionId':sessionId,'moveData':moveData});
+}
+
+function ResetShot(){
+    socket.emit("reset shot up");
 }
 
 socket.on("someone left", function( result ){
@@ -212,6 +217,10 @@ socket.on("shoot down", function( result ){
 socket.on("move down",function(result){
     var handlers = gameFunctionHandlers['move pig'];
             handlers[0](result);
+});
+
+socket.on("reset shot down", function(result){
+    resetShotPig(result);
 });
 socket.on("sync down", function( value ){ 
 	syncPercentDeviation = value;
