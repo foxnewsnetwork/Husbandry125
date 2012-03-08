@@ -45,6 +45,13 @@ var AngryBarn = function(world, player, barnDef) {
 	// animation
 	this.sprite2 = new Game.spr('views/RPigs.png', BARN_WIDTH, BARN_HEIGHT, 24, 0);
 	this.sprite = new Game.spr('views/LPigs.png', BARN_WIDTH, BARN_HEIGHT, 24, 0);
+    this.healthSprite0 = new Game.spr('views/numbers.png',31,41,10,0);
+    this.healthSprite0.speed(0);
+    this.healthSprite0.frame(1);
+    this.healthSprite1 = new Game.spr('views/numbers.png',31,41,10,0);
+    this.healthSprite1.speed(0);
+    this.healthSprite2 = new Game.spr('views/numbers.png',31,41,10,0);
+    this.healthSprite2.speed(0);
 	this.sprite.width = BARN_WIDTH;
 	this.sprite.height = BARN_HEIGHT;
 	this.sprite2.width = BARN_WIDTH;
@@ -62,12 +69,14 @@ var AngryBarn = function(world, player, barnDef) {
 		this.cannonSprite.absX = x;
 		this.cannonSprite.absY = y - CANNON_HEIGHT;
 		this.direction = -1;
-		
+		numberSpot = 10 + (this.player.id*300);
 		mibbuSetSpritePosition( this.sprite, x, y, Z_CHARACTERS);
 		mibbuSetSpritePosition( this.cannonSprite, x, y-CANNON_HEIGHT, Z_CHARACTERS);
 		mibbuSetSpritePosition( this.sprite2, x, y, Z_CHARACTERS);
 		mibbuSetSpritePosition( this.cannonSprite2, x, y-CANNON_HEIGHT, Z_CHARACTERS);
-		
+		mibbuSetSpritePosition(this.healthSprite0,numberSpot,30,0);
+        mibbuSetSpritePosition(this.healthSprite1,numberSpot + 30,30,0);
+        mibbuSetSpritePosition(this.healthSprite2,numberSpot + 60,30,0);
 		this.cannonSprite2.frame(25);
 		this.sprite2.frame(25);
 		this.cannonSprite.speed(0);
@@ -162,7 +171,18 @@ var AngryBarn = function(world, player, barnDef) {
 	}
     this.wasHit = function(){
         this.currenthp -= 10
-        alert(this.currenthp)
+        if(this.currenthp.toString().length == 2)
+        {
+           currenthpString = "0" + this.currenthp.toString()
+           hpArray = mibbuConvertInt2Frame(currenthpString)
+           this.healthSprite0.frame(hpArray[0]);
+           this.healthSprite1.frame(hpArray[1]);
+           this.healthSprite2.frame(hpArray[2]);
+        }
+        else
+        {
+
+        }
     }
 	/****************************************
 	*****************************************

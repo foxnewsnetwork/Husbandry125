@@ -31,6 +31,7 @@ function InitializeGameMode(){
     crosshair.speed(0);
     mibbuSetSpritePosition(crosshair,-CROSSHAIR_WIDTH,-CROSSHAIR_HEIGHT,Z_CHARACTERS+1);
 
+
     //Send JoinGame request to client.js. It will send request to server.
     JoinGame();
     //initialze actors and store them in an array for easy access.
@@ -120,36 +121,21 @@ function LoopGameMode(){
 	// Step 2: Handle input
     if(!playerBarn.walking)
     {
-        if(CheckWithinBounds( leftButton, mouseX, mouseY ) ){
+        if(!playerBarn.ammo.flying && CheckWithinBounds( leftButton, mouseX, mouseY ) ){
 		leftButton.frame(1);
 		//playerBarn.move(-1);
         playerBarn.direction = -1;
         playerBarn.walking = true;
         MovePig(-1);
-	}
-	else if(CheckWithinBounds( rightButton, mouseX, mouseY ) ){
+	    }
+	    else if(!playerBarn.ammo.flying && CheckWithinBounds( rightButton, mouseX, mouseY ) ){
 		rightButton.frame(1);
 		//playerBarn.move(1);
         playerBarn.direction = 1;
         playerBarn.walking = true;
         MovePig(1);
 	    }
-    }
-    else if(playerBarn.walking && playerBarn.direction == -1 && !CheckWithinBounds( leftButton, mouseX, mouseY ) ){
-		leftButton.frame(0);
-		//playerBarn.move(-1);
-        playerBarn.direction = -1;
-        playerBarn.walking = false;
-        MovePig(0);
-	}
-	else if(playerBarn.walking && playerBarn.direction == 1 && !CheckWithinBounds( rightButton, mouseX, mouseY ) ){
-		rightButton.frame(0);
-		//playerBarn.move(1);
-        playerBarn.direction = 1;
-        playerBarn.walking = false;
-        MovePig(0);
-	}
-    else if (CheckWithinBounds(playerBarn.cannonSprite,mouseX,mouseY) && mouseDown && !playerBarn.ammo.flying)
+        else if (CheckWithinBounds(playerBarn.cannonSprite,mouseX,mouseY) && mouseDown && !playerBarn.ammo.flying)
     {
         //Firstly just realign the mouse. Even if the mouse isn't moved,
         //Ammo should be pinned to mouse.
@@ -171,6 +157,22 @@ function LoopGameMode(){
         document.addEventListener("mouseup", handleAmmoRelease, true);
 
     }
+    }
+    else if(playerBarn.walking && playerBarn.direction == -1 && !CheckWithinBounds( leftButton, mouseX, mouseY ) ){
+		leftButton.frame(0);
+		//playerBarn.move(-1);
+        playerBarn.direction = -1;
+        playerBarn.walking = false;
+        MovePig(0);
+	}
+	else if(playerBarn.walking && playerBarn.direction == 1 && !CheckWithinBounds( rightButton, mouseX, mouseY ) ){
+		rightButton.frame(0);
+		//playerBarn.move(1);
+        playerBarn.direction = 1;
+        playerBarn.walking = false;
+        MovePig(0);
+	}
+
 	else {
 		leftButton.frame(0);
 		rightButton.frame(0);

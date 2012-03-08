@@ -27,7 +27,6 @@ function mibbuConvertInt2Frame( number ) {
 
     for(var i = 0; i < integerString.length; i++)
     {
-
         intArray[i] = parseInt(integerString.substr(i,1));
     }
 
