@@ -123,6 +123,8 @@ function CheckWithinBounds( sprite, x, y ){
         //Create the force.
         var vec = new b2Vec2(horizontalForce,verticalForce);
 
+       playerBarn.ammoJointDestroy();
+
         //Apply an impulse to the ammo.
         playerBarn.ammo.body.ApplyImpulse(vec, playerBarn.ammo.body.GetWorldCenter());
 
@@ -130,7 +132,6 @@ function CheckWithinBounds( sprite, x, y ){
         playerBarn.ammo.conflux();
         playerBarn.ammo.flying = true;
         playerBarn.ammo.notHit = true;
-
        //remove listener so we don't accidentally fire ammo again.
        document.removeEventListener("mouseup", handleAmmoRelease, true);
 

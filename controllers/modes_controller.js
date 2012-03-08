@@ -189,6 +189,8 @@ function LoopGameMode(){
          {
              playerBarn.ammo.reset(playerBarn.cannonSprite.x,playerBarn.cannonSprite.y);
              ResetShot();
+             playerBarn.resetJoint();
+
          }
 
      }

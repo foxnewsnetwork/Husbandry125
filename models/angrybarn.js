@@ -3,29 +3,29 @@ var BarnDef = function( ){
 	// physics
 	this.bodyDef = new b2BodyDef;
 	this.fixDef = new b2FixtureDef;
-
 	this.fixDef.density = 0.1;
 	this.fixDef.friction = 0.10;
 	this.fixDef.restitution = .4;
 	this.bodyDef.type = b2Body.b2_dynamicBody;
 	this.fixDef.shape = new b2PolygonShape;
-
-	this.fixDef.shape.SetAsBox( (0.5 * BARN_WIDTH )  * METER_PER_PIXEL, (0.5 * BARN_HEIGHT) * METER_PER_PIXEL  );
+    this.jointDef = new Box2D.Dynamics.Joints.b2DistanceJointDef;
+	this.fixDef.shape.SetAsBox( (0.8 * BARN_WIDTH )  * METER_PER_PIXEL, (0.5 * BARN_HEIGHT) * METER_PER_PIXEL  );
 
 	// game
 	this.maxspeed = 0.25;
 	this.maxhp = 100;
 	this.ammoDef = new AmmoDef();
+
 };
 
 // Class AngryBarn
 var AngryBarn = function(world, player, barnDef) {
 	// Initializing physics
      barnDef.bodyDef.userData = player.id * 2;
-
+    this.world = world.world;
 	this.body = world.world.CreateBody( barnDef.bodyDef );
 	this.body.CreateFixture( barnDef.fixDef );
-	
+
 	// Initializing game properties
 	this.maxhp = barnDef.maxhp;
 	this.currenthp = barnDef.maxhp;
@@ -36,6 +36,11 @@ var AngryBarn = function(world, player, barnDef) {
 	this.maxspeed = barnDef.maxspeed;
 	this.mode = BARN_MODE_MOVE;
 	this.walking = false;
+
+    //Joint stuff
+
+    this.ammoJoint = barnDef.jointDef;
+
 	// Introducing the concept of absolute pixel coordinates
 	this.absX;
 	this.absY;
@@ -62,6 +67,8 @@ var AngryBarn = function(world, player, barnDef) {
 	this.cannonSprite.height = CANNON_HEIGHT;
 	this.cannonSprite2.width = CANNON_WIDTH;
 	this.cannonSprite2.height = CANNON_HEIGHT;
+
+
 	// Game world connection functions
 	this.initialize = function(x,y) {
 		this.absX = x;
@@ -84,7 +91,11 @@ var AngryBarn = function(world, player, barnDef) {
 		this.cannonSprite2.speed(0);
 		this.sprite2.speed(0);
 		this.conflux();
-		this.ammo.initialize(x+5, y - BARN_HEIGHT);
+		this.ammo.initialize(x+30, y - BARN_HEIGHT + 28);
+
+        this.ammoJoint.Initialize(this.body,this.ammo.body, this.body.GetWorldCenter(),this.ammo.body.GetWorldCenter());
+        this.ammoJoint.collideConnected = true;
+        this.jointA = this.world.CreateJoint(this.ammoJoint)
 	}
 	
 	// Game mechanics macros 
@@ -169,6 +180,12 @@ var AngryBarn = function(world, player, barnDef) {
 	this.fire = function( velocity ){
 		this.ammo.fire( velocity );
 	}
+    this.resetJoint = function(){
+        this.jointA = this.world.CreateJoint(this.ammoJoint)
+    }
+    this.ammoJointDestroy = function(){
+        this.world.DestroyJoint(this.jointA);
+    }
     this.wasHit = function(){
         this.currenthp -= 10
         if(this.currenthp.toString().length == 2)

@@ -55,7 +55,7 @@ var AngryAmmo = function( world, player, ammoDef ){
 
 	}
     this.reset = function(x,y) {
-      mibbuSetSpritePosition( this.sprite, x , y -20, 0);
+      mibbuSetSpritePosition( this.sprite, x , y , 0);
         this.body.ApplyForce(new b2Vec2(0,.5),this.body.GetWorldCenter());
 		this.conflux();
         this.flying = false;

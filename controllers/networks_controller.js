@@ -66,6 +66,7 @@ function loadAddGameFunction() {
         shotBarn = actors[2*id];
 
         //make the pig shoot
+        shotBarn.ammoJointDestroy();
         shotBarn.ammo.body.ApplyImpulse(vec, shotBarn.ammo.body.GetWorldCenter());
         //handle all the other crap.
         shotBarn.ammo.conflux();
@@ -106,5 +107,6 @@ function resetShotPig(data){
     var pigId = data['playerSlot']
     resetPig = actors[2*pigId];
     resetPig.ammo.reset(resetPig.cannonSprite.x,resetPig.cannonSprite.y);
+    resetPig.resetJoint();
 
 }
