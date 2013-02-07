@@ -10,7 +10,7 @@ socket.on('news', function (data) {
   */
 
 AddShopFunction( "open shop down", function(items){ 
-	$("#buttfuck").html( "<img alt='nigger' src='" + items["picture_path"] + "' />" );
+	$("#buttfuck").html( "<img alt='persons_of_african_descent_with_a_proclivity_for_theft_and_other_such_petty_crimes' src='" + items["picture_path"] + "' />" );
 });
 
 AddChatFunction( "chat down", function(data){ 
