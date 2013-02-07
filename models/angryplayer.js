@@ -30,6 +30,6 @@ var PlayerDef = function( ) {
 	this.email = "email@email.email";
 	this.payment_method = "visa";
 	this.payment_info = "1234 5648 9713 1258 258 31687 4";
-	this.password = "persons_of_african_descent_with_a_proclivity_for_theft_and_other_such_petty_crimes";
+	this.password = "somehinglessprofane...";
 };
 
